@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <title>Frontend Mentor | Results summary component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/output.css" />
+    <script defer src="/index.js"></script>
+  </head>
+  <body class="lg:flex lg:justify-center lg:items-center min-h-screen">
+    <main class="font-hanken font-medium lg:flex rounded-3xl shadow-lg">
+      <section class="result text-pale-blue rounded-b-3xl lg:rounded-3xl py-10 px-14 text-center">
+        <h1 class="mb-8 text-xl text-light-lavender">Your Result</h1>
+        <div class="h-[200px] aspect-square mx-auto mb-4">
+          <div
+            class="result-number rounded-full w-full h-full flex items-center justify-center flex-col"
+          >
+            <span class="block text-7xl font-bold">76</span>
+            <span class="block text-light-lavender opacity-60">of 100</span>
+          </div>
+        </div>
+        <span class="block text-2xl mb-4">Great</span>
+        <p class="lg:w-[220px] mx-auto text-light-lavender opacity-90">
+          You scored higher than 65% of the people who have taken these tests.
+        </p>
+      </section>
+      <section id="summary" class="bg-white rounded-3xl p-6 sm:min-w-[350px] lg:py-10 lg:px-10">
+        <h2 class="text-2xl mb-4">Summary</h2>
+        <ul id="summary-score" class="space-y-4 mb-8"></ul>
+        <button class="w-full p-3 rounded-3xl bg-dark-gray-blue text-white hover:result">Continue</button>
+      </section>
+    </main>
+  </body>
+</html>
