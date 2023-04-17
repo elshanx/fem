@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "yarn.lock": true,
+    "yarn-error.log": true,
+    ".gitignore": true
+  }
+}

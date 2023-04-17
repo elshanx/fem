@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .result {
+    @apply bg-gradient-to-b from-[#7857ff] to-[#2e2be9];
+  }
+
+  .result-number {
+    @apply bg-gradient-to-b from-[#4e21ca] to-[#2421ca00];
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <title>Frontend Mentor | Product preview card component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/output.css" />
+  </head>
+  <body class="font-montserrat bg-cream min-h-screen md:flex md:items-center md:justify-center">
+    <main
+      class="p-4 md:flex rounded-lg md:max-h-[600px] md:max-w-[750px] mx-auto overflow-hidden shadow-sm md:p-0"
+    >
+      <figure class="rounded-t-lg overflow-hidden w-full md:rounded-none">
+        <img class="md:hidden" src="/images/image-product-mobile.jpg" alt="Chanel Perfume" />
+        <img class="hidden md:block" src="/images/image-product-desktop.jpg" alt="Chanel Perfume" />
+      </figure>
+      <section
+        class="bg-white w-full rounded-b-lg overflow-hidden md:rounded-b-none md:overflow-auto"
+      >
+        <div class="p-6 md:p-10 md:w-[90%]">
+          <span class="uppercase tracking-[6px] text-dark-grayish-blue mb-4 block">Perfume</span>
+          <h1 class="font-hanken text-3xl md:text-4xl font-bold text-very-dark-blue mb-5 md:mb-8">
+            Gabrielle Essence Eau De Parfum
+          </h1>
+          <p class="text-dark-grayish-blue text-sm leading-6 md:leading-[27.5px] mb-6 md:mb-10">
+            A floral, solar and voluptuous interpretation composed by Olivier Polge,
+            Perfumer-Creator for the House of CHANEL.
+          </p>
+          <div class="flex items-center gap-x-6 mb-1">
+            <span class="block text-dark-cyan font-hanken text-3xl md:text-5xl">$149.99</span>
+            <span class="block text-sm text-dark-grayish-blue line-through opacity-90 md:text-base"
+              >$169.99</span
+            >
+          </div>
+        </div>
+        <div class="px-6 pb-6 md:pb-0">
+          <button
+            class="bg-dark-cyan text-white w-full flex items-center justify-center gap-x-4 p-2 py-3 rounded-lg md:p-4 md:rounded-xl"
+          >
+            <div>
+              <img src="/images/icon-cart.svg" alt="cart icon" />
+            </div>
+            <span class="tracking-wide">Add to Cart</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
