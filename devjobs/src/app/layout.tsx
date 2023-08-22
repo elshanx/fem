@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from './providers/theme-provider';
+import { ThemeSwitcher } from './utils/ThemeSwitcher';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,8 +17,13 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang='en' suppressHydrationWarning={true}>
+      <body className={inter.className}>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <ThemeSwitcher />
+          <main>{children}</main>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
