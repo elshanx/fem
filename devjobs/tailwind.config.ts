@@ -23,6 +23,9 @@ const config: Config = {
         gray: '#9DAEC2',
         'dark-grey': '#6E8098',
       },
+      screens: {
+        xl: '1440px',
+      },
     },
   },
   plugins: [],
