@@ -7,7 +7,7 @@ const JobList = () => {
       {data.map((job) => (
         <Job key={job.id} {...job} />
       ))}
-      <button className='h-12 w-36 rounded bg-violet font-bold text-white'>
+      <button className='mx-auto block h-12 w-36 rounded bg-violet font-bold text-white'>
         Load more
       </button>
     </>
