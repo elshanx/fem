@@ -16,8 +16,8 @@ export default function Job(props: JobT) {
   } = props;
 
   return (
-    <Link href={`job/${id}`} className='mb-[49px] block last-of-type:mb-8'>
-      <div className='relative min-h-[228px] rounded-md bg-white pb-8 pl-8 pr-1 pt-[49px]'>
+    <Link href={`job/${id}`} className='block'>
+      <div className='relative min-h-[228px] rounded-md bg-white pb-8 pl-8 pr-1 pt-[49px] dark:bg-very-dark-blue'>
         <header className='mb-4 flex items-center gap-x-4 text-dark-grey'>
           <div
             style={{ backgroundColor: logoBackground }}
@@ -33,7 +33,7 @@ export default function Job(props: JobT) {
           </div>
           <span>{contract}</span>
         </header>
-        <p className='mb-4 text-[20px] font-bold leading-6 text-very-dark-blue'>
+        <p className='mb-4 text-[20px] font-bold leading-6 text-very-dark-blue transition-colors hover:text-dark-grey dark:text-white'>
           {position}
         </p>
         <span className='mb-11 block text-dark-grey'>{company}</span>
