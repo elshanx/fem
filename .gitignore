@@ -3,3 +3,5 @@
 */**.git
 */**.gitignore
 */**.gitattributes
+# Local Netlify folder
+.netlify

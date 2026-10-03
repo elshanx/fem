@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .info-label {
+    @apply mb-[13px] text-xs font-bold tracking-widest text-dark-gray uppercase;
+  }
+
+  .info-value {
+    @apply text-lg font-medium text-very-dark-gray break-words md:text-[26px] md:leading-[30px];
+  }
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
