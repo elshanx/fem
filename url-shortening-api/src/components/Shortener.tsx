@@ -19,7 +19,10 @@ export default function Shortener() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!url.trim()) return setError('Please add a link');
+    if (!url.trim()) {
+      setError('Please add a link');
+      return;
+    }
 
     setError('');
     setLoading(true);
@@ -47,23 +50,23 @@ export default function Shortener() {
         className='flex flex-col gap-4 rounded-xl bg-violet bg-[url(/images/bg-shorten-mobile.svg)] bg-top-right bg-no-repeat p-6 lg:flex-row lg:gap-6 lg:bg-[url(/images/bg-shorten-desktop.svg)] lg:bg-cover lg:px-16 lg:py-[3.25rem]'
       >
         <div className='relative flex-1'>
-          <label htmlFor='url' className='sr-only'>
-            Link to shorten
+          <label htmlFor='url' className='block'>
+            <span className='sr-only'>Link to shorten</span>
+            <input
+              id='url'
+              type='url'
+              inputMode='url'
+              autoComplete='url'
+              placeholder='Shorten a link here...'
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              aria-invalid={!!error}
+              aria-describedby='url-error'
+              className={`w-full rounded-md border-3 bg-white px-4 py-2.5 text-base text-gray-950 outline-none placeholder:text-gray-500/75 focus-visible:border-cyan lg:rounded-xl lg:px-8 lg:py-4 lg:text-xl ${
+                error ? 'border-red placeholder:text-red/50' : 'border-transparent'
+              }`}
+            />
           </label>
-          <input
-            id='url'
-            type='url'
-            inputMode='url'
-            autoComplete='url'
-            placeholder='Shorten a link here...'
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            aria-invalid={!!error}
-            aria-describedby='url-error'
-            className={`w-full rounded-md border-3 bg-white px-4 py-2.5 text-base text-gray-950 outline-none placeholder:text-gray-500/75 focus-visible:border-cyan lg:rounded-xl lg:px-8 lg:py-4 lg:text-xl ${
-              error ? 'border-red placeholder:text-red/50' : 'border-transparent'
-            }`}
-          />
           <p
             id='url-error'
             role='alert'

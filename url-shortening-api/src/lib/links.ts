@@ -1,6 +1,10 @@
 // Client-side API for links. Links live in Postgres, scoped to this browser by an httpOnly cookie.
 
-export type Link = { id: string; originalUrl: string; shortUrl: string };
+export interface Link {
+  id: string;
+  originalUrl: string;
+  shortUrl: string;
+}
 
 async function request<T>(init?: RequestInit): Promise<T> {
   const res = await fetch('/api/links', init);

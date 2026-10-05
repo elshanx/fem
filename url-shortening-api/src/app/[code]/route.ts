@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/db';
 import { CODE_PATTERN } from '@/lib/short-code';
 
 /** Redirects a short code to its original URL. */

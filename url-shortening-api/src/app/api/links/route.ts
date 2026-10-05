@@ -1,16 +1,34 @@
 import { cookies } from 'next/headers';
 import { Prisma } from '@/generated/prisma/client';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/db';
 import { generateCode, normalizeUrl } from '@/lib/short-code';
 
 const OWNER_COOKIE = 'sid';
 const LIST_LIMIT = 50;
+
+const MAX_CREATE_ATTEMPTS = 3;
 
 const toLink = (link: { code: string; originalUrl: string }, origin: string) => ({
   id: link.code,
   originalUrl: link.originalUrl,
   shortUrl: `${origin}/${link.code}`,
 });
+
+const isCodeCollision = (err: unknown) =>
+  err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002';
+
+/** Inserts a link with a fresh code, retrying on the (astronomically rare) code collision. */
+async function createLink(
+  data: { originalUrl: string; ownerId: string },
+  attemptsLeft = MAX_CREATE_ATTEMPTS
+): Promise<{ code: string; originalUrl: string } | null> {
+  try {
+    return await prisma.link.create({ data: { ...data, code: generateCode() } });
+  } catch (err) {
+    if (!isCodeCollision(err)) throw err;
+    return attemptsLeft > 1 ? createLink(data, attemptsLeft - 1) : null;
+  }
+}
 
 /** Lists the links created by this browser, newest first. */
 export async function GET(request: Request) {
@@ -47,17 +65,9 @@ export async function POST(request: Request) {
     });
   }
 
-  // Retry on the (astronomically rare) code collision.
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      const link = await prisma.link.create({
-        data: { code: generateCode(), originalUrl, ownerId },
-      });
-      return Response.json(toLink(link, new URL(request.url).origin), { status: 201 });
-    } catch (err) {
-      const collision = err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002';
-      if (!collision) throw err;
-    }
+  const link = await createLink({ originalUrl, ownerId });
+  if (!link) {
+    return Response.json({ error: 'Could not shorten that link, try again' }, { status: 500 });
   }
-  return Response.json({ error: 'Could not shorten that link, try again' }, { status: 500 });
+  return Response.json(toLink(link, new URL(request.url).origin), { status: 201 });
 }

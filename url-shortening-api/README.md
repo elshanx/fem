@@ -35,7 +35,7 @@ npm run db:migrate
 npm run dev
 ```
 
-`npm test` runs the unit tests and `npm run format` runs Prettier.
+`npm test` runs the unit tests, `npm run lint` checks the [Airbnb style guide](https://github.com/airbnb/javascript) (via `eslint-config-airbnb-extended`), and `npm run format` runs Prettier.
 
 ## Author
 
