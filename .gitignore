@@ -5,3 +5,9 @@
 */**.gitattributes
 # Local Netlify folder
 .netlify
+
+# Local AI agent skills
+**/.agents/
+**/.claude/
+**/.windsurf/
+**/skills-lock.json

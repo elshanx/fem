@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Link {
+  code        String   @id
+  originalUrl String
+  // Anonymous browser id from the `sid` cookie; becomes a user id when auth lands.
+  ownerId     String
+  createdAt   DateTime @default(now())
+
+  @@unique([ownerId, originalUrl])
+  @@index([ownerId, createdAt])
+}

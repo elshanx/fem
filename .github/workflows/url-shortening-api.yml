@@ -1,0 +1,38 @@
+name: url-shortening-api
+
+on:
+  pull_request:
+    paths: ["url-shortening-api/**", ".github/workflows/url-shortening-api.yml"]
+  push:
+    branches: [main]
+    paths: ["url-shortening-api/**", ".github/workflows/url-shortening-api.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: url-shortening-api
+    env:
+      # Build never connects to the database; this only satisfies env validation.
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: url-shortening-api/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npx prettier --check .
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
