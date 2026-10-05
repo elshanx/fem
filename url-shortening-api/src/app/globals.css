@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cyan: hsl(180, 66%, 49%);
+  --color-cyan-light: hsl(180, 56%, 75%);
+  --color-violet: hsl(257, 27%, 26%);
+  --color-red: hsl(0, 87%, 67%);
+  --color-gray-400: hsl(0, 0%, 75%);
+  --color-gray-500: hsl(257, 7%, 63%);
+  --color-gray-900: hsl(255, 11%, 22%);
+  --color-gray-950: hsl(260, 8%, 14%);
+  /* ponytail: not in the style guide, sampled from the design's section background */
+  --color-gray-100: hsl(230, 25%, 95%);
+
+  --font-sans: var(--font-poppins), sans-serif;
+}
+
+body {
+  font-size: 1.125rem;
+}
+
+@utility wrapper {
+  @apply mx-auto w-full max-w-277.5 px-6;
+}
+
+@utility btn {
+  @apply inline-block cursor-pointer rounded-full bg-cyan font-bold text-white transition-colors hover:bg-cyan-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet disabled:cursor-wait disabled:opacity-70;
+}
