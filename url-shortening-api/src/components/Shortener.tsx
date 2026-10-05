@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
-import { loadLinks, saveLinks, shorten, type Link } from '@/lib/links';
+import { fetchLinks, shorten, type Link } from '@/lib/links';
 
 export default function Shortener() {
   const [links, setLinks] = useState<Link[]>([]);
@@ -10,14 +10,12 @@ export default function Shortener() {
   const [loading, setLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Read storage after mount so server and client render the same first HTML.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setLinks(loadLinks()), []);
-
-  const updateLinks = (next: Link[]) => {
-    setLinks(next);
-    saveLinks(next);
-  };
+  useEffect(() => {
+    // ponytail: a failed list load just shows no history; add an error state if it matters
+    fetchLinks()
+      .then(setLinks)
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +24,8 @@ export default function Shortener() {
     setError('');
     setLoading(true);
     try {
-      updateLinks([await shorten(url), ...links]);
+      const link = await shorten(url);
+      setLinks((prev) => [link, ...prev]);
       setUrl('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
