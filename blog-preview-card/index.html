@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="HTML & CSS foundations: the languages that define structure, content and presentation."
+    />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link
+      rel="preload"
+      href="./assets/fonts/Figtree-VariableFont_wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+
+    <title>Frontend Mentor | Blog preview card</title>
+  </head>
+  <body
+    class="flex min-h-dvh flex-col items-center justify-center gap-8 bg-yellow px-6 py-12 font-sans font-medium text-gray-950"
+  >
+    <main class="w-full max-w-81.75 md:max-w-[24rem]">
+      <article
+        class="group relative rounded-[1.25rem] bg-white p-6 shadow-card ring-1 ring-gray-950 ring-inset has-focus-visible:outline-2 has-focus-visible:outline-offset-4 has-focus-visible:outline-gray-950"
+      >
+        <img
+          src="./assets/images/illustration-article.svg"
+          alt=""
+          width="336"
+          height="201"
+          class="h-50 w-full rounded-[0.625rem] object-cover"
+        />
+
+        <p
+          class="mt-6 inline-block rounded bg-yellow px-3 py-1 text-xs/normal font-extrabold md:text-preset-3-bold"
+        >
+          Learning
+        </p>
+        <p class="mt-3 text-xs/normal md:text-preset-3">
+          Published <time datetime="2023-12-21">21 Dec 2023</time>
+        </p>
+
+        <h1 class="mt-3 text-xl/normal font-extrabold md:text-preset-1">
+          <a
+            href="#"
+            class="transition-colors outline-none group-hover:text-yellow after:absolute after:inset-0 after:rounded-[1.25rem] focus-visible:text-yellow"
+          >
+            HTML &amp; CSS foundations
+          </a>
+        </h1>
+        <p class="mt-3 text-sm/normal text-gray-500 md:text-preset-2">
+          These languages are the backbone of every website, defining structure, content, and
+          presentation.
+        </p>
+
+        <div class="mt-6 flex items-center gap-3">
+          <img
+            src="./assets/images/image-avatar.webp"
+            alt=""
+            width="32"
+            height="32"
+            class="size-8 rounded-full"
+          />
+          <p class="text-preset-3-bold">Greg Hooper</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="text-center text-[0.6875rem]">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io/challenges/blog-preview-card-ckPaj01IcS"
+        class="relative underline hover:no-underline"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/elshanx" class="relative italic underline hover:no-underline"
+        >elshanx</a
+      >.
+    </footer>
+  </body>
+</html>
