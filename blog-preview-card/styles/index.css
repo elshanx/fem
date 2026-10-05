@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('../assets/fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-yellow: hsl(47, 88%, 63%);
+  --color-gray-500: hsl(0, 0%, 42%);
+  --color-gray-950: hsl(0, 0%, 7%);
+
+  --font-sans: 'Figtree', sans-serif;
+
+  /* Figma text presets (all 150% line height) */
+  --text-preset-1: 1.5rem;
+  --text-preset-1--line-height: 1.5;
+  --text-preset-1--font-weight: 800;
+  --text-preset-2: 1rem;
+  --text-preset-2--line-height: 1.5;
+  --text-preset-3: 0.875rem;
+  --text-preset-3--line-height: 1.5;
+  --text-preset-3-bold: 0.875rem;
+  --text-preset-3-bold--line-height: 1.5;
+  --text-preset-3-bold--font-weight: 800;
+
+  --shadow-card: 8px 8px 0 0 var(--color-gray-950);
+}
