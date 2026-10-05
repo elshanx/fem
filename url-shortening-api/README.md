@@ -47,8 +47,6 @@ Rate limiting is skipped locally unless Upstash credentials are set; production 
 2. Under **Storage**, add **Prisma Postgres** (sets `DATABASE_URL`) and **Upstash Redis** (sets `KV_REST_API_URL` / `KV_REST_API_TOKEN`).
 3. Deploy. Vercel runs `npm run vercel-build`, which applies migrations (`prisma migrate deploy`) before `next build`.
 
-CI (`.github/workflows/url-shortening-api.yml`) runs lint, Prettier, typecheck, tests and build on every PR that touches this folder.
-
 ## Author
 
 - GitHub: [@elshanx](https://github.com/elshanx)
