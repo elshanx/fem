@@ -1,5 +1,5 @@
 const ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-const LENGTH = 7; // 62^7 ≈ 3.5 trillion codes
+const LENGTH = 7;
 
 export const CODE_PATTERN = new RegExp(`^[0-9A-Za-z]{${LENGTH}}$`);
 
@@ -10,7 +10,6 @@ export function generateCode() {
   );
 }
 
-/** Normalizes user input to an absolute http(s) URL, or returns null if it isn't one. */
 export function normalizeUrl(input: unknown): string | null {
   if (typeof input !== 'string' || !input.trim()) return null;
   const raw = input.trim();

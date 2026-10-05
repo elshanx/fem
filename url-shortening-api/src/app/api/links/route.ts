@@ -17,7 +17,6 @@ const toLink = (link: { code: string; originalUrl: string }, origin: string) => 
 const isCodeCollision = (err: unknown) =>
   err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002';
 
-/** Inserts a link with a fresh code, retrying on the (astronomically rare) code collision. */
 async function createLink(
   data: { originalUrl: string; ownerId: string },
   attemptsLeft = MAX_CREATE_ATTEMPTS
@@ -30,7 +29,6 @@ async function createLink(
   }
 }
 
-/** Lists the links created by this browser, newest first. */
 export async function GET(request: Request) {
   const ownerId = (await cookies()).get(OWNER_COOKIE)?.value;
   if (!ownerId) return Response.json([]);
@@ -44,7 +42,6 @@ export async function GET(request: Request) {
   return Response.json(links.map((link) => toLink(link, origin)));
 }
 
-/** Creates a short link for `{ url }`. */
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   if (!body?.url?.trim?.()) return Response.json({ error: 'Please add a link' }, { status: 400 });

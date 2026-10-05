@@ -1,7 +1,6 @@
 import prisma from '@/lib/db';
 import { CODE_PATTERN } from '@/lib/short-code';
 
-/** Redirects a short code to its original URL. */
 export async function GET(_request: Request, { params }: RouteContext<'/[code]'>) {
   const { code } = await params;
   const link = CODE_PATTERN.test(code)

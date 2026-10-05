@@ -29,7 +29,6 @@ export default function Statistics() {
       </p>
 
       <ul className='relative mt-24 flex flex-col gap-24 lg:flex-row lg:gap-8 lg:text-left'>
-        {/* connector line: vertical on mobile, horizontal on desktop */}
         <span
           aria-hidden='true'
           className='absolute inset-y-0 left-1/2 w-2 -translate-x-1/2 bg-cyan lg:inset-x-0 lg:inset-y-auto lg:top-1/2 lg:left-0 lg:h-2 lg:w-full lg:translate-x-0'

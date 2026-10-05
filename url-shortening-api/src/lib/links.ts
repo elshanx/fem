@@ -1,5 +1,3 @@
-// Client-side API for links. Links live in Postgres, scoped to this browser by an httpOnly cookie.
-
 export interface Link {
   id: string;
   originalUrl: string;

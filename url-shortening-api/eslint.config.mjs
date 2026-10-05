@@ -6,7 +6,6 @@ import prettier from 'eslint-config-prettier/flat';
 
 const gitignorePath = path.resolve('.', '.gitignore');
 
-// Airbnb style guide (ESLint 9 port), including Next.js core-web-vitals rules.
 const eslintConfig = [
   includeIgnoreFile(gitignorePath),
   { name: 'js/config', ...js.configs.recommended },
