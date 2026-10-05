@@ -3,6 +3,8 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { fetchLinks, shorten, type Link } from '@/lib/links';
 
+const COPIED_RESET_MS = 2000;
+
 export default function Shortener() {
   const [links, setLinks] = useState<Link[]>([]);
   const [url, setUrl] = useState('');
@@ -16,6 +18,12 @@ export default function Shortener() {
       .then(setLinks)
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!copiedId) return undefined;
+    const timer = setTimeout(() => setCopiedId(null), COPIED_RESET_MS);
+    return () => clearTimeout(timer);
+  }, [copiedId]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

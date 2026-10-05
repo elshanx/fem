@@ -1,13 +1,10 @@
-import path from 'node:path';
 import js from '@eslint/js';
-import { includeIgnoreFile } from '@eslint/compat';
+import { globalIgnores } from 'eslint/config';
 import { configs, plugins } from 'eslint-config-airbnb-extended';
 import prettier from 'eslint-config-prettier/flat';
 
-const gitignorePath = path.resolve('.', '.gitignore');
-
 const eslintConfig = [
-  includeIgnoreFile(gitignorePath),
+  globalIgnores(['.next/**', 'src/generated/**', 'next-env.d.ts']),
   { name: 'js/config', ...js.configs.recommended },
   plugins.stylistic,
   plugins.importX,
