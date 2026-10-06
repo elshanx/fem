@@ -1,24 +1,32 @@
 import type { Metadata } from 'next';
 import { Kumbh_Sans } from 'next/font/google';
-import { ThemeProvider } from '../providers/ThemeProvider';
+import { ThemeProvider } from 'next-themes';
+import Header from '@/components/Header';
 import './globals.css';
 
-const kumbhSans = Kumbh_Sans({ subsets: ['latin'] });
+const kumbhSans = Kumbh_Sans({
+  variable: '--font-kumbh-sans',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
 
 export const metadata: Metadata = {
-  title: 'DevJobs',
-  description: 'Developer Jobs challenge',
+  title: { default: 'devjobs', template: '%s | devjobs' },
+  description: 'Find your next developer job.',
 };
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang='en' suppressHydrationWarning={true}>
-      <body className={kumbhSans.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+    // next-themes sets the theme class on <html> before hydration.
+    <html lang='en' className={kumbhSans.variable} suppressHydrationWarning>
+      <body className='min-h-dvh font-sans antialiased'>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
           {children}
         </ThemeProvider>
       </body>

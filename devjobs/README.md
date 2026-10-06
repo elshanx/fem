@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor - devjobs web app
 
-## Getting Started
+Solution to the [devjobs web app](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l) challenge.
 
-First, run the development server:
+## Features
+
+- Job listings with search by title/company, location and "Full Time Only"; filters live in the URL, so results are shareable and the form works without JavaScript
+- "Load More" in pages of 12
+- Job detail page with company info, requirements and role, plus a styled 404
+- Light/dark theme that follows the system and remembers your choice
+- Responsive at desktop, tablet and mobile; on mobile the location and full-time filters open in a dialog
+
+## Stack
+
+Next.js 16 (App Router, server components), TypeScript, Tailwind CSS v4, Postgres + Prisma 7, next-themes. Linted with the Airbnb style guide (`eslint-config-airbnb-extended`) and formatted with Prettier.
+
+## How it's built
+
+- `prisma/schema.prisma` defines a single `Job` model; `prisma/seed.ts` loads the challenge data from `prisma/jobs.json`.
+- `src/lib/filters.ts` turns the query string into filters and a Prisma `where` (unit-tested in `filters.test.ts`); `src/lib/jobs.ts` runs the queries.
+- Pages query the database directly from server components; there is no separate API.
+
+## Running
+
+Needs a running Postgres.
 
 ```bash
+cp .env.example .env   # then set DATABASE_URL
+npm install            # also generates the Prisma client
+npx prisma migrate dev
+npm run db:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm test` runs the unit tests, `npm run lint` the Airbnb rules, `npm run typecheck` the types, and `npm run format` Prettier.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Author
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- GitHub: [@elshanx](https://github.com/elshanx)
+- Frontend Mentor: [@elshanx](https://www.frontendmentor.io/profile/elshanx)

@@ -1,3 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-violet: #5964e0;
+  --color-light-violet: #939bf4;
+  --color-very-dark-blue: #19202d;
+  --color-midnight: #121721;
+  --color-light-grey: #f4f6f8;
+  --color-gray: #9daec2;
+  --color-dark-grey: #6e8098;
+
+  --font-sans: var(--font-kumbh-sans), sans-serif;
+
+  --breakpoint-xl: 90rem;
+
+  /* Figma type scale */
+  --text-h1: 1.75rem;
+  --text-h1--line-height: 2.125rem;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.8125rem;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.5rem;
+  --text-h4: 0.875rem;
+  --text-h4--line-height: 1.125rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-[69.375rem] px-6 md:px-10 xl:px-0;
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet dark:focus-visible:outline-light-violet;
+}
+
+@utility btn {
+  @apply inline-flex h-12 cursor-pointer items-center justify-center rounded-[0.3125rem] px-7 text-body font-bold focus-ring transition-colors;
+}
+
+@utility btn-primary {
+  @apply btn bg-violet text-white hover:bg-light-violet;
+}
+
+@utility btn-secondary {
+  @apply btn bg-violet/10 text-violet hover:bg-violet/35 dark:bg-white/10 dark:text-white dark:hover:bg-white/35;
+}
+
+body {
+  @apply bg-light-grey text-body text-dark-grey dark:bg-midnight;
+}
