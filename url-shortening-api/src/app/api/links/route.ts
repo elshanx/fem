@@ -4,7 +4,7 @@ import { Prisma } from '@/generated/prisma/client';
 import prisma from '@/lib/db';
 import env from '@/lib/env';
 import checkRateLimit from '@/lib/rate-limit';
-import { generateCode, normalizeUrl } from '@/lib/short-code';
+import { generateCode, isOwnLink, normalizeUrl, resolvesToPrivate } from '@/lib/short-code';
 
 const OWNER_COOKIE = 'sid';
 const LIST_LIMIT = 50;
@@ -88,8 +88,9 @@ export const POST = withErrorHandling(async (request) => {
 
   const { host, origin } = new URL(request.url);
   const ownHosts = [host, request.headers.get('host'), request.headers.get('x-forwarded-host')];
-  if (ownHosts.includes(new URL(originalUrl).host)) {
-    return badRequest('That link is already shortened');
+  if (isOwnLink(originalUrl, ownHosts)) return badRequest('That link is already shortened');
+  if (await resolvesToPrivate(new URL(originalUrl).hostname)) {
+    return badRequest('Please enter a valid URL');
   }
 
   const cookieStore = await cookies();
@@ -109,11 +110,9 @@ export const POST = withErrorHandling(async (request) => {
   if (!result) {
     return Response.json({ error: SERVER_ERROR }, { status: 500, headers: rateLimit.headers });
   }
-  if (!result.created) {
-    return Response.json(
-      { error: 'That link already exists' },
-      { status: 409, headers: rateLimit.headers }
-    );
-  }
-  return Response.json(toLink(result.link, origin), { status: 201, headers: rateLimit.headers });
+  // Shortening the same URL again hands back the existing link instead of an error.
+  return Response.json(toLink(result.link, origin), {
+    status: result.created ? 201 : 200,
+    headers: rateLimit.headers,
+  });
 });

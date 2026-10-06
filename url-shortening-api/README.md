@@ -19,9 +19,9 @@ Next.js (App Router), TypeScript, Tailwind CSS, Postgres + Prisma.
 
 ## How it's built
 
-- `src/app/api/links/route.ts`: `GET` lists this browser's links, `POST { url }` validates the URL and creates a 7-character code. The owner is an anonymous `sid` httpOnly cookie, which becomes a user ID once auth exists.
+- `src/app/api/links/route.ts`: `GET` lists this browser's links, `POST { url }` validates the URL and creates a 7-character code, or returns the existing link if this browser already shortened that URL. The owner is an anonymous `sid` httpOnly cookie, which becomes a user ID once auth exists.
 - `src/app/[code]/route.ts` looks up the code and redirects with a 302 (`no-store`, `noindex`).
-- Abuse protection: link creation is rate limited per IP (10/minute, Upstash Redis), and URLs pointing at private/local hosts, containing credentials, longer than 2048 characters, or pointing back at the shortener are rejected.
+- Abuse protection: link creation is rate limited per IP (10/minute, Upstash Redis), and URLs pointing at private/local hosts, containing credentials, longer than 2048 characters, or pointing back at the shortener are rejected. Hostnames are also resolved, so public names that point at loopback (`localtest.me`) are rejected too. This is a policy filter, not a security boundary: the server never fetches the target, and a DNS record can change after the check.
 - `src/lib/env.ts` validates environment variables at startup; `next.config.ts` sets security headers.
 - `src/lib/links.ts` is the client's API wrapper, and `src/lib/short-code.ts` holds code generation and URL normalization (tested in `short-code.test.ts`).
 - `prisma/schema.prisma` defines a single `Link` model.
