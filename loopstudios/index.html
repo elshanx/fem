@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Loopstudios produces world-class virtual reality projects and immersive experiences."
+    />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap"
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <script src="./index.js" defer></script>
+
+    <title>Frontend Mentor | Loopstudios landing page</title>
+  </head>
+  <body class="font-sans text-body text-gray-600">
+    <header class="relative isolate h-162.5 text-white">
+      <picture>
+        <source media="(min-width: 48rem)" srcset="./assets/images/desktop/image-hero.jpg" />
+        <img
+          src="./assets/images/mobile/image-hero.jpg"
+          alt=""
+          width="750"
+          height="1300"
+          class="absolute inset-0 -z-10 size-full object-cover"
+        />
+      </picture>
+
+      <div class="mx-auto max-w-277.5 px-6 pt-10 md:px-10 lg:px-0 lg:pt-16">
+        <div class="flex items-center justify-between">
+          <a href="#" class="relative z-30">
+            <img
+              src="./assets/images/logo.svg"
+              alt="Loopstudios home"
+              width="192"
+              height="32"
+              class="h-6 w-auto md:h-8"
+            />
+          </a>
+
+          <button
+            id="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu"
+            aria-label="Open menu"
+            class="group relative z-30 flex size-8 items-center justify-center md:hidden"
+          >
+            <img
+              src="./assets/images/icon-hamburger.svg"
+              alt=""
+              width="24"
+              height="16"
+              class="group-aria-expanded:hidden"
+            />
+            <img
+              src="./assets/images/icon-close.svg"
+              alt=""
+              width="20"
+              height="20"
+              class="hidden group-aria-expanded:block"
+            />
+          </button>
+
+          <nav
+            id="menu"
+            aria-label="Main"
+            class="max-md:fixed max-md:inset-0 max-md:z-20 max-md:hidden max-md:bg-black max-md:data-open:block"
+          >
+            <ul
+              class="flex gap-8 max-md:flex-col max-md:gap-6 max-md:px-6 max-md:pt-40 max-md:font-display max-md:text-2xl max-md:uppercase"
+            >
+              <li><a href="#" class="max-md:hover:opacity-70 md:underline-bar">About</a></li>
+              <li><a href="#" class="max-md:hover:opacity-70 md:underline-bar">Careers</a></li>
+              <li><a href="#" class="max-md:hover:opacity-70 md:underline-bar">Events</a></li>
+              <li><a href="#" class="max-md:hover:opacity-70 md:underline-bar">Products</a></li>
+              <li><a href="#" class="max-md:hover:opacity-70 md:underline-bar">Support</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <h1
+          class="mt-37.5 max-w-162.5 border-2 border-white px-4 py-6 font-display text-[clamp(2rem,10vw,2.5rem)]/[0.95] font-light uppercase md:px-10 md:py-10 md:text-7xl/[0.92] lg:mt-32"
+        >
+          Immersive experiences that deliver
+        </h1>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-277.5 px-6 md:px-10 lg:px-0">
+      <section
+        aria-labelledby="about-title"
+        class="mt-24 text-center lg:relative lg:mt-40 lg:h-125 lg:text-left"
+      >
+        <picture>
+          <source
+            media="(min-width: 64rem)"
+            srcset="./assets/images/desktop/image-interactive.jpg"
+          />
+          <img
+            src="./assets/images/mobile/image-interactive.jpg"
+            alt="Man wearing a VR headset, reaching out excitedly"
+            width="654"
+            height="448"
+            class="w-full lg:w-182.75"
+          />
+        </picture>
+        <div
+          class="mt-12 lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:w-135 lg:bg-white lg:pt-24 lg:pl-24"
+        >
+          <h2
+            id="about-title"
+            class="font-display text-[2rem]/none font-light text-black uppercase md:text-5xl/none"
+          >
+            The leader in interactive VR
+          </h2>
+          <p class="mt-4 lg:mt-6">
+            Founded in 2011, Loopstudios has been producing world-class virtual reality projects for
+            some of the best companies around the globe. Our award-winning creations have
+            transformed businesses through digital experiences that bind to their brand.
+          </p>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="creations-title"
+        class="mt-24 grid justify-items-center gap-12 pb-24 lg:mt-46 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-y-20 lg:pb-46"
+      >
+        <h2
+          id="creations-title"
+          class="font-display text-[2rem]/none font-light text-black uppercase md:text-5xl/none lg:justify-self-start"
+        >
+          Our creations
+        </h2>
+        <a
+          href="#"
+          class="order-last inline-flex h-10 w-39 items-center justify-center border-2 border-black text-sm tracking-[0.3125rem] text-black uppercase transition-colors hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:order-0"
+        >
+          See all
+        </a>
+
+        <ul class="grid w-full gap-6 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 lg:gap-7.5">
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-deep-earth.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-deep-earth.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                Deep<br />earth
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-night-arcade.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-night-arcade.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                Night<br />arcade
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-soccer-team.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-soccer-team.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                Soccer<br />team VR
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-grid.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-grid.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                The<br />grid
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-from-above.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-from-above.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                From up<br />above VR
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-pocket-borealis.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-pocket-borealis.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                Pocket<br />borealis
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-curiosity.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-curiosity.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                The<br />curiosity
+              </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="group relative block">
+              <picture>
+                <source
+                  media="(min-width: 40rem)"
+                  srcset="./assets/images/desktop/image-fisheye.jpg"
+                />
+                <img
+                  src="./assets/images/mobile/image-fisheye.jpg"
+                  alt=""
+                  width="654"
+                  height="240"
+                  class="h-30 w-full object-cover sm:h-112.5"
+                />
+              </picture>
+              <h3
+                class="absolute inset-0 flex items-end bg-linear-to-r from-black/70 to-transparent p-5 font-display text-2xl/none font-light text-white uppercase transition-colors group-hover:bg-white/75 group-hover:bg-none group-hover:text-black group-focus-visible:bg-white/75 group-focus-visible:bg-none group-focus-visible:text-black sm:bg-linear-to-t sm:p-10 sm:text-[2rem]/none"
+              >
+                Make it<br />fisheye
+              </h3>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="bg-black py-14 text-white lg:py-11">
+      <div
+        class="mx-auto grid max-w-277.5 justify-items-center gap-8 px-6 md:px-10 lg:grid-cols-[1fr_auto] lg:justify-items-start lg:gap-y-4 lg:px-0"
+      >
+        <a href="#">
+          <img
+            src="./assets/images/logo.svg"
+            alt="Loopstudios home"
+            width="192"
+            height="32"
+            class="h-6 w-auto"
+          />
+        </a>
+
+        <ul class="flex items-center gap-4 lg:col-start-2 lg:row-start-1">
+          <li>
+            <a href="#" aria-label="Facebook" class="underline-bar block">
+              <img src="./assets/images/icon-facebook.svg" alt="" width="24" height="24" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Twitter" class="underline-bar block">
+              <img src="./assets/images/icon-twitter.svg" alt="" width="24" height="20" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Pinterest" class="underline-bar block">
+              <img src="./assets/images/icon-pinterest.svg" alt="" width="24" height="24" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Instagram" class="underline-bar block">
+              <img src="./assets/images/icon-instagram.svg" alt="" width="24" height="24" />
+            </a>
+          </li>
+        </ul>
+
+        <nav aria-label="Footer" class="lg:row-start-2">
+          <ul class="flex flex-col items-center gap-4 lg:flex-row lg:gap-8">
+            <li><a href="#" class="underline-bar">About</a></li>
+            <li><a href="#" class="underline-bar">Careers</a></li>
+            <li><a href="#" class="underline-bar">Events</a></li>
+            <li><a href="#" class="underline-bar">Products</a></li>
+            <li><a href="#" class="underline-bar">Support</a></li>
+          </ul>
+        </nav>
+
+        <div class="grid gap-2 text-center text-gray-600 lg:row-start-2 lg:text-right">
+          <p>&copy; 2021 Loopstudios. All rights reserved.</p>
+          <p class="text-[0.6875rem]">
+            Challenge by
+            <a
+              href="https://www.frontendmentor.io/challenges/loopstudios-landing-page-N88J5Onjw"
+              class="underline hover:no-underline"
+              >Frontend Mentor</a
+            >. Coded by
+            <a href="https://github.com/elshanx" class="italic underline hover:no-underline"
+              >elshanx</a
+            >.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

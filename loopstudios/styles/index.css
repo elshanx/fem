@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-gray-200: hsl(0, 0%, 85%);
+  --color-gray-600: hsl(0, 0%, 41%);
+
+  --font-sans: 'Alata', sans-serif;
+  --font-display: 'Josefin Sans', sans-serif;
+
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.67;
+}
+
+@utility underline-bar {
+  @apply relative after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:bg-white after:transition-transform hover:after:scale-x-100 focus-visible:after:scale-x-100;
+}
