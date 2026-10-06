@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ping is launching soon. Subscribe and get notified." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <script src="./index.js" defer></script>
+
+    <title>Frontend Mentor | Ping coming soon page</title>
+  </head>
+  <body class="overflow-x-hidden font-sans text-blue-950">
+    <main class="mx-auto flex max-w-160 flex-col items-center px-6 pt-20 text-center md:pt-22">
+      <img
+        src="./images/logo.svg"
+        alt="Ping"
+        width="86"
+        height="26"
+        class="h-4 w-auto motion-safe:animate-rise md:h-6.5"
+      />
+
+      <h1
+        class="mt-12 text-[1.375rem] font-light text-gray-400 motion-safe:animate-rise motion-safe:[animation-delay:100ms] md:mt-11 md:text-5xl"
+      >
+        We are launching <strong class="font-bold text-blue-950">soon!</strong>
+      </h1>
+      <p
+        class="mt-4 text-xs font-light motion-safe:animate-rise motion-safe:[animation-delay:200ms] md:mt-5 md:text-xl"
+      >
+        Subscribe and get notified
+      </p>
+
+      <form
+        id="notify-form"
+        class="mt-8 grid w-full gap-x-4 gap-y-2.5 motion-safe:animate-rise motion-safe:[animation-delay:300ms] md:mt-10 md:grid-cols-[1fr_auto] md:gap-y-1.5"
+        novalidate
+      >
+        <label for="email" class="sr-only">Email address</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Your email address..."
+          aria-describedby="email-error"
+          class="h-10 w-full rounded-full border border-blue-200 px-8 text-xs font-light transition-colors duration-200 outline-none placeholder:text-blue-200 focus:border-blue-500 aria-invalid:border-red-400 md:h-14 md:text-base"
+        />
+        <p
+          id="email-error"
+          aria-live="polite"
+          class="text-[0.625rem] text-red-400 italic empty:hidden motion-safe:animate-pop md:row-start-2 md:pl-8 md:text-left md:text-xs"
+        ></p>
+        <button
+          type="submit"
+          class="mt-2 h-10 cursor-pointer rounded-full bg-blue-500 px-16 text-xs font-semibold text-white shadow-[0_0.5rem_1rem_hsl(223_87%_63%/0.25)] transition duration-200 hover:-translate-y-0.5 hover:bg-blue-500/60 hover:shadow-[0_0.75rem_1.5rem_hsl(223_87%_63%/0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:translate-y-0 md:col-start-2 md:row-start-1 md:mt-0 md:h-14 md:px-15.5 md:text-base"
+        >
+          Notify Me
+        </button>
+      </form>
+
+      <div
+        class="relative mt-18 w-full motion-safe:animate-rise motion-safe:[animation-delay:450ms] md:mt-23"
+      >
+        <img
+          src="./images/illustration-dashboard.svg"
+          alt=""
+          width="1280"
+          height="782"
+          class="w-full motion-safe:animate-float"
+        />
+      </div>
+    </main>
+
+    <footer
+      class="mt-18 mb-10 flex flex-col items-center gap-6 px-6 text-center motion-safe:animate-rise motion-safe:[animation-delay:600ms] md:mt-18 md:mb-12"
+    >
+      <ul class="flex gap-3">
+        <li>
+          <a
+            href="#"
+            aria-label="Ping on Facebook"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            aria-label="Ping on Twitter"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            aria-label="Ping on Instagram"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="size-3.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="6" />
+              <circle cx="12" cy="12" r="4.5" />
+              <circle cx="17.75" cy="6.25" r="0.5" fill="currentColor" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <p class="text-[0.625rem] font-light text-gray-400 md:text-xs">
+        &copy; Copyright Ping. All rights reserved.
+      </p>
+      <p class="-mt-4 text-[0.625rem] font-light text-gray-400 md:text-xs">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io/challenges/ping-single-column-coming-soon-page-5cadd051fec04111f7b848da"
+          class="underline hover:no-underline"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://github.com/elshanx" class="italic underline hover:no-underline">elshanx</a
+        >.
+      </p>
+    </footer>
+  </body>
+</html>
