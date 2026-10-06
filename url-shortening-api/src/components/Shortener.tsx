@@ -55,7 +55,7 @@ export default function Shortener() {
       <form
         noValidate
         onSubmit={handleSubmit}
-        className='flex flex-col gap-4 rounded-xl bg-violet bg-[url(/images/bg-shorten-mobile.svg)] bg-top-right bg-no-repeat p-6 lg:flex-row lg:gap-6 lg:bg-[url(/images/bg-shorten-desktop.svg)] lg:bg-cover lg:px-16 lg:py-[3.25rem]'
+        className='flex flex-col gap-4 rounded-xl bg-violet bg-[url(/images/bg-shorten-mobile.svg)] bg-top-right bg-no-repeat p-6 lg:flex-row lg:gap-6 lg:bg-[url(/images/bg-shorten-desktop.svg)] lg:bg-cover lg:px-16 lg:py-13'
       >
         <div className='relative flex-1'>
           <label htmlFor='url' className='block'>
@@ -116,7 +116,7 @@ export default function Shortener() {
                   <button
                     type='button'
                     onClick={() => copy(link)}
-                    className={`btn rounded-md py-2.5 text-base lg:w-[6.5rem] lg:py-2.5 ${copied ? 'bg-violet hover:bg-violet' : ''}`}
+                    className={`btn rounded-md py-2.5 text-base lg:w-26 lg:py-2.5 ${copied ? 'bg-violet hover:bg-violet' : ''}`}
                   >
                     {copied ? 'Copied!' : 'Copy'}
                   </button>
