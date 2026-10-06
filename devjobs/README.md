@@ -2,6 +2,8 @@
 
 Solution to the [devjobs web app](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l) challenge.
 
+![Design preview](./preview.jpg)
+
 ## Features
 
 - Job listings with search by title/company, location and "Full Time Only"; filters live in the URL, so results are shareable and the form works without JavaScript
