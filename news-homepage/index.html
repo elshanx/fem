@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The latest on Web 3.0, AI, EVs, gaming and tech: news, reviews and analysis."
+    />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link
+      rel="preload"
+      href="./assets/fonts/Inter-VariableFont_slnt,wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <script src="./index.js" defer></script>
+
+    <title>Frontend Mentor | News homepage</title>
+  </head>
+  <body class="bg-off-white font-sans text-body text-slate">
+    <div class="mx-auto max-w-[1142px] px-4 pt-7 pb-12 lg:pt-22">
+      <header class="flex items-center justify-between">
+        <a href="#" class="rounded-sm">
+          <img
+            src="./assets/images/logo.svg"
+            alt="W. home"
+            width="65"
+            height="40"
+            class="h-7 w-auto md:h-10"
+          />
+        </a>
+
+        <button
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu"
+          aria-label="Open menu"
+          class="group relative z-30 flex size-10 items-center justify-center md:hidden"
+        >
+          <img
+            src="./assets/images/icon-menu.svg"
+            alt=""
+            width="40"
+            height="17"
+            class="group-aria-expanded:hidden"
+          />
+          <img
+            src="./assets/images/icon-menu-close.svg"
+            alt=""
+            width="32"
+            height="31"
+            class="hidden group-aria-expanded:block"
+          />
+        </button>
+
+        <nav
+          id="menu"
+          aria-label="Main"
+          class="max-md:fixed max-md:inset-0 max-md:z-20 max-md:hidden max-md:bg-navy/50 max-md:data-open:block"
+        >
+          <ul
+            class="flex gap-10 max-md:ml-auto max-md:h-full max-md:w-[68%] max-md:flex-col max-md:gap-6 max-md:bg-off-white max-md:px-6 max-md:pt-36 max-md:text-lg max-md:text-navy"
+          >
+            <li>
+              <a href="#" class="transition-colors hover:text-red focus-visible:text-red">Home</a>
+            </li>
+            <li>
+              <a href="#" class="transition-colors hover:text-red focus-visible:text-red">New</a>
+            </li>
+            <li>
+              <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                >Popular</a
+              >
+            </li>
+            <li>
+              <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                >Trending</a
+              >
+            </li>
+            <li>
+              <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                >Categories</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="mt-8 grid gap-16 lg:mt-14 lg:grid-cols-3 lg:gap-x-7.5 lg:gap-y-18">
+        <section aria-labelledby="hero-title" class="lg:col-span-2">
+          <picture>
+            <source media="(min-width: 48rem)" srcset="./assets/images/image-web-3-desktop.jpg" />
+            <img
+              src="./assets/images/image-web-3-mobile.jpg"
+              alt=""
+              width="686"
+              height="600"
+              class="h-75 w-full object-cover"
+            />
+          </picture>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-2 md:gap-7.5 lg:mt-8">
+            <h1
+              id="hero-title"
+              class="text-[2.5rem]/[1] font-extrabold text-navy lg:text-[3.5rem]/[1]"
+            >
+              The Bright Future of Web 3.0?
+            </h1>
+            <div>
+              <p>
+                We dive into the next evolution of the web that claims to put the power of the
+                platforms back into the hands of the people. But is it really fulfilling its
+                promise?
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-flex h-12 w-46.25 items-center justify-center bg-red text-sm font-bold tracking-[0.275rem] text-navy uppercase transition-colors hover:bg-navy hover:text-off-white focus-visible:bg-navy focus-visible:text-off-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:mt-7"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <aside aria-labelledby="new-title" class="bg-navy px-5 pt-7 pb-6 md:px-6">
+          <h2 id="new-title" class="text-[2rem]/none font-bold text-orange lg:text-[2.5rem]/none">
+            New
+          </h2>
+          <ul class="divide-y divide-slate">
+            <li class="py-8 first:pt-6 last:pb-2">
+              <article>
+                <h3 class="text-xl font-extrabold text-off-white">
+                  <a href="#" class="transition-colors hover:text-orange focus-visible:text-orange"
+                    >Hydrogen VS Electric Cars</a
+                  >
+                </h3>
+                <p class="mt-2 text-gray-blue">Will hydrogen-fueled cars ever catch up to EVs?</p>
+              </article>
+            </li>
+            <li class="py-8 first:pt-6 last:pb-2">
+              <article>
+                <h3 class="text-xl font-extrabold text-off-white">
+                  <a href="#" class="transition-colors hover:text-orange focus-visible:text-orange"
+                    >The Downsides of AI Artistry</a
+                  >
+                </h3>
+                <p class="mt-2 text-gray-blue">
+                  What are the possible adverse effects of on-demand AI image generation?
+                </p>
+              </article>
+            </li>
+            <li class="py-8 first:pt-6 last:pb-2">
+              <article>
+                <h3 class="text-xl font-extrabold text-off-white">
+                  <a href="#" class="transition-colors hover:text-orange focus-visible:text-orange"
+                    >Is VC Funding Drying Up?</a
+                  >
+                </h3>
+                <p class="mt-2 text-gray-blue">
+                  Private funding by VC firms is down 50% YOY. We take a look at what that means.
+                </p>
+              </article>
+            </li>
+          </ul>
+        </aside>
+
+        <section aria-label="Top stories" class="lg:col-span-3">
+          <ol class="grid gap-8 lg:grid-cols-3 lg:gap-7.5">
+            <li class="flex gap-6">
+              <img
+                src="./assets/images/image-retro-pcs.jpg"
+                alt=""
+                width="100"
+                height="127"
+                class="h-31.75 w-25 shrink-0 object-cover"
+              />
+              <article>
+                <p aria-hidden="true" class="text-[2rem]/none font-bold text-red">01</p>
+                <h3 class="mt-3 text-lg font-extrabold text-navy">
+                  <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                    >Reviving Retro PCs</a
+                  >
+                </h3>
+                <p class="mt-2">What happens when old PCs are given modern upgrades?</p>
+              </article>
+            </li>
+            <li class="flex gap-6">
+              <img
+                src="./assets/images/image-top-laptops.jpg"
+                alt=""
+                width="100"
+                height="127"
+                class="h-31.75 w-25 shrink-0 object-cover"
+              />
+              <article>
+                <p aria-hidden="true" class="text-[2rem]/none font-bold text-red">02</p>
+                <h3 class="mt-3 text-lg font-extrabold text-navy">
+                  <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                    >Top 10 Laptops of 2022</a
+                  >
+                </h3>
+                <p class="mt-2">Our best picks for various needs and budgets.</p>
+              </article>
+            </li>
+            <li class="flex gap-6">
+              <img
+                src="./assets/images/image-gaming-growth.jpg"
+                alt=""
+                width="100"
+                height="127"
+                class="h-31.75 w-25 shrink-0 object-cover"
+              />
+              <article>
+                <p aria-hidden="true" class="text-[2rem]/none font-bold text-red">03</p>
+                <h3 class="mt-3 text-lg font-extrabold text-navy">
+                  <a href="#" class="transition-colors hover:text-red focus-visible:text-red"
+                    >The Growth of Gaming</a
+                  >
+                </h3>
+                <p class="mt-2">How the pandemic has sparked fresh opportunities.</p>
+              </article>
+            </li>
+          </ol>
+        </section>
+      </main>
+
+      <footer class="mt-16 text-center text-[0.6875rem]">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io/challenges/news-homepage-H6SWTa1MFl"
+          class="underline hover:no-underline"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://github.com/elshanx" class="italic underline hover:no-underline">elshanx</a
+        >.
+      </footer>
+    </div>
+  </body>
+</html>
