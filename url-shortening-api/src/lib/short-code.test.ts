@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { CODE_PATTERN, MAX_URL_LENGTH, generateCode, normalizeUrl } from './short-code.ts';
+import {
+  CODE_PATTERN,
+  MAX_URL_LENGTH,
+  generateCode,
+  isOwnLink,
+  isPrivateAddress,
+  normalizeUrl,
+} from './short-code.ts';
 
 test('normalizeUrl', () => {
   assert.equal(normalizeUrl('https://example.com/a?b=1'), 'https://example.com/a?b=1');
@@ -18,6 +25,8 @@ test('normalizeUrl rejects abuse-prone targets', () => {
   [
     longUrl,
     'http://localhost:3000',
+    'http://localhost.:3000/admin',
+    'http://printer.local.',
     'http://printer.local',
     'http://db.internal/admin',
     'http://127.0.0.1',
@@ -34,6 +43,29 @@ test('normalizeUrl rejects abuse-prone targets', () => {
   });
   assert.equal(normalizeUrl('http://172.32.0.1'), 'http://172.32.0.1/');
   assert.equal(normalizeUrl('https://8.8.8.8'), 'https://8.8.8.8/');
+  assert.equal(normalizeUrl('https://example.com./a'), 'https://example.com/a');
+});
+
+test('isOwnLink', () => {
+  const ownHosts = ['short.example', null];
+  assert.equal(isOwnLink(normalizeUrl('https://short.example./abc')!, ownHosts), true);
+  assert.equal(isOwnLink(normalizeUrl('https://short.example/abc')!, ownHosts), true);
+  assert.equal(isOwnLink(normalizeUrl('https://example.com')!, ownHosts), false);
+});
+
+test('isPrivateAddress', () => {
+  [
+    '127.0.0.1',
+    '10.1.2.3',
+    '192.168.0.10',
+    '::1',
+    'fd00::1',
+    'fe80::1',
+    '::ffff:127.0.0.1',
+  ].forEach((ip) => assert.equal(isPrivateAddress(ip), true, ip));
+  ['8.8.8.8', '172.32.0.1', '2606:4700::1111'].forEach((ip) =>
+    assert.equal(isPrivateAddress(ip), false, ip)
+  );
 });
 
 test('generateCode', () => {

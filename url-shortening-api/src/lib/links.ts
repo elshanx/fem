@@ -4,14 +4,24 @@ export interface Link {
   shortUrl: string;
 }
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
 async function request<T>(init?: RequestInit): Promise<T> {
   const res = await fetch('/api/links', init).catch(() => {
     throw new Error("Can't reach the server. Check your connection and try again.");
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error(
-      data.error ?? 'Something went wrong on our side. Please try again in a moment.'
+    throw new ApiError(
+      data.error ?? 'Something went wrong on our side. Please try again in a moment.',
+      res.status
     );
   }
   return data;

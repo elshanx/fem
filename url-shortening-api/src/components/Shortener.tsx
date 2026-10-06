@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
-import { fetchLinks, shorten, type Link } from '@/lib/links';
+import { ApiError, fetchLinks, shorten, type Link } from '@/lib/links';
 
 const COPIED_RESET_MS = 2000;
 
@@ -9,6 +9,8 @@ export default function Shortener() {
   const [links, setLinks] = useState<Link[]>([]);
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
+  // Only a bad URL marks the field invalid; rate limits and outages are not the input's fault.
+  const [invalid, setInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -29,17 +31,20 @@ export default function Shortener() {
     e.preventDefault();
     if (!url.trim()) {
       setError('Please add a link');
+      setInvalid(true);
       return;
     }
 
     setError('');
+    setInvalid(false);
     setLoading(true);
     try {
       const link = await shorten(url);
-      setLinks((prev) => [link, ...prev]);
+      setLinks((prev) => [link, ...prev.filter((l) => l.id !== link.id)]);
       setUrl('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
+      setInvalid(err instanceof ApiError && err.status === 400);
     } finally {
       setLoading(false);
     }
@@ -68,10 +73,10 @@ export default function Shortener() {
               placeholder='Shorten a link here...'
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              aria-invalid={!!error}
+              aria-invalid={invalid}
               aria-describedby='url-error'
               className={`w-full rounded-md border-3 bg-white px-4 py-2.5 text-base text-gray-950 outline-none placeholder:text-gray-500/75 focus-visible:border-cyan lg:rounded-xl lg:px-8 lg:py-4 lg:text-xl ${
-                error ? 'border-red placeholder:text-red/50' : 'border-transparent'
+                invalid ? 'border-red placeholder:text-red/50' : 'border-transparent'
               }`}
             />
           </label>
@@ -126,6 +131,9 @@ export default function Shortener() {
           })}
         </ul>
       )}
+      <p aria-live='polite' className='sr-only'>
+        {copiedId ? 'Copied to clipboard' : ''}
+      </p>
     </section>
   );
 }
