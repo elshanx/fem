@@ -1,0 +1,21 @@
+---
+import Arrow from '../icons/arrow.svg';
+
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'text-label inline-flex items-center whitespace-nowrap justify-center gap-6 bg-dark px-8 py-6 text-white transition-colors hover:bg-grey-dark',
+    className,
+  ]}
+>
+  <slot />
+  <Arrow aria-hidden="true" />
+</a>

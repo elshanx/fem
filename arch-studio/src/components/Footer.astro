@@ -1,0 +1,36 @@
+---
+import Logo from '../icons/logo.svg';
+import Button from './Button.astro';
+
+const links = [
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="mt-[72px] bg-[linear-gradient(transparent_60px,var(--color-grey-lighter)_60px)] px-16 pb-12 md:mt-50 md:bg-[linear-gradient(to_right,var(--color-grey-lighter)_calc(100%-156px),transparent_0)] md:px-0 md:pb-0 lg:mt-40 lg:bg-[linear-gradient(to_right,var(--color-grey-lighter)_calc(100%-126px),transparent_0)] lg:bg-clip-content lg:bg-origin-content lg:px-[165px]">
+  <div class="flex flex-col items-center gap-8 text-center md:flex-row md:gap-10 md:text-left lg:gap-20">
+    <a
+      href="/"
+      aria-label="Arch Studio home"
+      class="grid size-30 shrink-0 place-items-center bg-dark text-white lg:size-50"
+    >
+      <Logo class="h-[25px] w-auto lg:h-10" />
+    </a>
+    <nav aria-label="Footer">
+      <ul class="flex flex-col gap-8 md:flex-row md:gap-14">
+        {links.map(({ href, label }) => (
+          <li>
+            <a href={href} class="text-label text-grey transition-colors hover:text-dark">
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <Button href="/portfolio" class="md:ml-auto">
+      See Our Portfolio
+    </Button>
+  </div>
+</footer>

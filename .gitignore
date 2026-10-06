@@ -22,3 +22,10 @@
 # Playwright output
 **/test-results/
 **/playwright-report/
+
+# Design files (Frontend Mentor licence: never commit)
+*.fig
+
+# Astro build output
+**/.astro/
+arch-studio/dist/

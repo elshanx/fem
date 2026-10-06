@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import heritage from '../assets/about/desktop/image-heritage.jpg';
+import jake from '../assets/about/desktop/avatar-jake.jpg';
+import thompson from '../assets/about/desktop/avatar-thompson.jpg';
+import jackson from '../assets/about/desktop/avatar-jackson.jpg';
+import maria from '../assets/about/desktop/avatar-maria.jpg';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Linkedin from '../icons/linkedin.svg';
+import Twitter from '../icons/twitter.svg';
+
+const leaders = [
+  { name: 'Jake Richards', role: 'Chief Architect', avatar: jake },
+  { name: 'Thompson Smith', role: 'Head of Finance', avatar: thompson },
+  { name: 'Jackson Rourke', role: 'Lead Designer', avatar: jackson },
+  { name: 'Maria Simpson', role: 'Senior Architect', avatar: maria },
+];
+---
+
+<Layout title="About Us" label="About Us">
+  <PageHero
+    page="about"
+    ghost="About"
+    title="Your team of professionals"
+    text="Our small team of world-class professionals will work with you every step of the way. Strong relationships are at the core of everything we do. This extends to the relationship our projects have with their surroundings."
+  />
+
+  <section class="wrap mt-[75px] md:mt-50 lg:flex lg:justify-between lg:gap-12">
+    <div class="lg:w-[446px] lg:shrink-0">
+      <span class="block h-px w-[65px] bg-grey-light"></span>
+      <h2 class="heading-l mt-[68px] text-dark md:mt-[49px] lg:mt-[87px]">Our Heritage</h2>
+      <div class="mt-6 space-y-6 md:mt-14">
+        <p>
+          Founded in 2007, we started as a trio of architects. Our complimentary skills and
+          relentless attention to detail turned Arch into one of the most sought after boutique
+          firms in the country.
+        </p>
+        <p>
+          Speciliazing in Urban Design allowed us to focus on creating exceptional structures that
+          live in harmony with their surroundings. We consider every detail from every surrounding
+          element to inform our designs.
+        </p>
+        <p>Our small team of world-class professionals provides input on every project.</p>
+      </div>
+    </div>
+    <Image
+      src={heritage}
+      alt=""
+      loading="lazy"
+      class="hidden h-[568px] w-full max-w-[540px] min-w-0 object-cover lg:block"
+    />
+  </section>
+
+  <section class="wrap mt-[108px] md:mt-[231px] lg:mt-50 lg:flex lg:justify-between lg:gap-8">
+    <h2 class="heading-l text-dark lg:w-[350px] lg:shrink-0">The Leaders</h2>
+    <ul class="mt-[52px] grid gap-20 md:mt-12 md:grid-cols-2 md:gap-x-[11px] md:gap-y-[103px] lg:mt-0 lg:max-w-[730px] lg:flex-1 lg:gap-x-[30px] lg:gap-y-16">
+      {leaders.map((leader) => (
+        <li>
+          <div class="group relative h-71 md:h-64 lg:h-80">
+            <Image
+              src={leader.avatar}
+              alt={leader.name}
+              loading="lazy"
+              class="size-full object-cover"
+            />
+            <div class="absolute inset-0 flex items-center justify-center gap-8 bg-black/50 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+              <a
+                href="https://www.linkedin.com"
+                aria-label={`${leader.name} on LinkedIn`}
+                class="text-white transition-colors hover:text-grey-light"
+              >
+                <Linkedin aria-hidden="true" />
+              </a>
+              <a
+                href="https://x.com"
+                aria-label={`${leader.name} on Twitter`}
+                class="text-white transition-colors hover:text-grey-light"
+              >
+                <Twitter aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <h3 class="heading-m mt-4 text-dark">{leader.name}</h3>
+          <p class="text-dark/75">{leader.role}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>

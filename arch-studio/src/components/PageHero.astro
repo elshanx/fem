@@ -1,0 +1,38 @@
+---
+import Picture from './Picture.astro';
+
+interface Props {
+  page: string;
+  ghost: string;
+  title: string;
+  text: string;
+}
+
+const { page, ghost, title, text } = Astro.props;
+---
+
+<section class="relative md:wrap lg:pr-0">
+  <div class="relative h-60 md:h-180 lg:w-[635px]">
+    <Picture
+      page={page}
+      file="image-hero.jpg"
+      alt=""
+      loading="eager"
+      class="size-full object-cover"
+    />
+    <span aria-hidden="true" class="absolute inset-0 bg-black/35"></span>
+  </div>
+  <div class="relative -mt-[45px] w-[343px] max-w-full bg-white pt-[69px] pl-8 md:absolute md:right-[98px] md:bottom-0 md:mt-0 md:w-[515px] md:pt-[89px] md:pl-[59px] lg:right-0 lg:w-[793px] lg:pt-[155px] lg:pl-[174px]">
+    <span class="hidden h-px w-[65px] bg-grey-light md:block"></span>
+    <h1 class="heading-l text-dark md:mt-[72px] md:max-w-[456px] lg:mt-[57px] lg:max-w-[446px]">
+      {title}
+    </h1>
+    <p class="mt-4 md:mt-10 md:max-w-[456px] lg:mt-14 lg:max-w-[446px]">{text}</p>
+  </div>
+  <p
+    aria-hidden="true"
+    class="heading-ghost absolute top-[243px] right-[98px] hidden md:block lg:top-[130px] lg:right-[165px]"
+  >
+    {ghost}
+  </p>
+</section>

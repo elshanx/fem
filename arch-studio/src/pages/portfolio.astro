@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  { title: 'Seraph Station', date: 'September 2019', file: 'image-seraph.jpg' },
+  { title: 'Eebox Building', date: 'August 2017', file: 'image-eebox.jpg' },
+  { title: 'Federal II Tower', date: 'March 2017', file: 'image-federal.jpg' },
+  { title: 'Project Del Sol', date: 'January 2016', file: 'image-del-sol.jpg' },
+  { title: 'Le Prototype', date: 'October 2015', file: 'image-prototype.jpg' },
+  { title: '228B Tower', date: 'April 2015', file: 'image-228b.jpg' },
+  { title: 'Grand Edelweiss Hotel', date: 'December 2013', file: 'image-edelweiss.jpg' },
+  { title: 'Netcry Tower', date: 'August 2012', file: 'image-netcry.jpg' },
+  { title: 'Hypers', date: 'January 2012', file: 'image-hypers.jpg' },
+  { title: 'SXIV Tower', date: 'March 2011', file: 'image-sxiv.jpg' },
+  { title: 'Trinity Bank Tower', date: 'September 2010', file: 'image-trinity.jpg' },
+  { title: 'Project Paramour', date: 'February 2008', file: 'image-paramour.jpg' },
+];
+---
+
+<Layout title="Portfolio" label="Portfolio">
+  <h1 class="sr-only">Portfolio</h1>
+  <ul class="wrap mt-14 grid gap-6 md:mt-0 lg:grid-cols-3 lg:gap-x-[30px] lg:gap-y-8">
+    {projects.map((project) => (
+      <li>
+        <ProjectCard
+          title={project.title}
+          subtitle={project.date}
+          file={project.file}
+          class="px-10 pb-8 lg:pb-10"
+        />
+      </li>
+    ))}
+  </ul>
+</Layout>

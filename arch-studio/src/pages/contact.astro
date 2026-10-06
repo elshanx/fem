@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../icons/arrow.svg';
+
+const offices = [
+  {
+    name: 'Main Office',
+    mail: 'archone@mail.com',
+    address: '1 Public Square, Nashville TN',
+    phone: '123-456-3451',
+    coords: [36.1673, -86.7781],
+  },
+  {
+    name: 'Office II',
+    mail: 'archtwo@mail.com',
+    address: '901 Bagby St, Houston TX',
+    phone: '832-123-4321',
+    coords: [29.7604, -95.3698],
+  },
+];
+
+const fields: {
+  name: string;
+  label: string;
+  type?: 'text' | 'email';
+  autocomplete?: 'name' | 'email';
+}[] = [
+  { name: 'name', label: 'Name', type: 'text', autocomplete: 'name' },
+  { name: 'email', label: 'Email', type: 'email', autocomplete: 'email' },
+  { name: 'message', label: 'Message' },
+];
+
+const inputClass =
+  'block w-full border-b border-dark bg-transparent pb-[23px] pl-8 text-xl leading-[1.1] font-bold tracking-[-0.3px] text-dark transition-colors outline-none placeholder:text-grey-light focus:border-b-[3px] focus:pb-[21px] aria-invalid:border-red aria-invalid:placeholder:text-red/50 md:aria-invalid:pr-72';
+---
+
+<Layout title="Contact" label="Contact">
+  <PageHero
+    page="contact"
+    ghost="Contact"
+    title="Tell us about your project"
+    text="We’d love to hear more about your project. Please, leave a message below or give us a call. We have two offices, one in Texas and one in Tennessee. If you find yourself nearby, come say hello!"
+  />
+
+  <section class="wrap mt-[75px] md:mt-50">
+    <span class="block h-px w-[65px] bg-grey-light"></span>
+    <div class="mt-[72px] lg:flex lg:gap-[30px]">
+      <h2 class="heading-l text-dark lg:w-[350px] lg:shrink-0">Contact Details</h2>
+      <div class="mt-[30px] grid gap-[30px] md:mt-10 md:gap-12 lg:mt-0 lg:flex-1 lg:grid-cols-2 lg:gap-[30px]">
+        {offices.map((office, i) => (
+          <div class="md:flex md:items-end md:justify-between lg:block">
+            <div>
+              <h3 class="text-label">{office.name}</h3>
+              <dl class="mt-6 grid grid-cols-[auto_1fr] gap-x-6">
+                <dt>Mail :</dt>
+                <dd>
+                  <a href={`mailto:${office.mail}`} class="hover:text-dark">
+                    {office.mail}
+                  </a>
+                </dd>
+                <dt>Address :</dt>
+                <dd>{office.address}</dd>
+                <dt>Phone :</dt>
+                <dd>
+                  <a href={`tel:${office.phone}`} class="hover:text-dark">
+                    {office.phone}
+                  </a>
+                </dd>
+              </dl>
+            </div>
+            <button
+              type="button"
+              data-office={i}
+              class="text-label mt-12 flex shrink-0 items-center gap-6 text-dark transition-[gap] hover:gap-10 md:mt-0 lg:mt-14"
+            >
+              View on Map
+              <Arrow aria-hidden="true" />
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-[75px] md:wrap md:mt-50">
+    <div
+      id="map"
+      role="region"
+      aria-label="Map of our offices"
+      data-offices={JSON.stringify(offices)}
+      class="isolate h-[367px] bg-grey-lighter md:h-140"
+    ></div>
+  </section>
+
+  <section class="wrap mt-[77px] md:mt-50 lg:mt-40 lg:flex lg:gap-[30px]">
+    <h2 class="heading-l text-dark lg:w-[350px] lg:shrink-0">Connect with us</h2>
+    <form novalidate class="mt-8 md:mt-12 lg:mt-0 lg:flex-1" data-form>
+      <div class="space-y-8">
+        {fields.map((field) => (
+          <div class="relative">
+            <label for={field.name} class="sr-only">
+              {field.label}
+            </label>
+            {field.type ? (
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type}
+                autocomplete={field.autocomplete}
+                placeholder={field.label}
+                aria-describedby={`${field.name}-error`}
+                class={inputClass}
+              />
+            ) : (
+              <textarea
+                id={field.name}
+                name={field.name}
+                placeholder={field.label}
+                aria-describedby={`${field.name}-error`}
+                class:list={[inputClass, 'h-[119px] resize-none']}
+              />
+            )}
+            <p
+              id={`${field.name}-error`}
+              class="text-label mt-2 text-right text-red empty:hidden md:absolute md:top-0 md:right-0 md:mt-0"
+            />
+          </div>
+        ))}
+      </div>
+      <div class="flex items-center justify-end gap-6">
+        <p class="text-dark" role="status" data-status></p>
+        <button
+          type="submit"
+          aria-label="Send message"
+          class="shrink-0 bg-dark p-8 text-white transition-colors hover:bg-grey-dark"
+        >
+          <Arrow aria-hidden="true" />
+        </button>
+      </div>
+    </form>
+  </section>
+</Layout>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  type Office = { name: string; address: string; coords: [number, number] };
+
+  const mapEl = document.querySelector<HTMLElement>('#map')!;
+  const offices: Office[] = JSON.parse(mapEl.dataset.offices!);
+
+  const map = L.map(mapEl, { scrollWheelZoom: false }).fitBounds(
+    offices.map((o) => o.coords),
+    { padding: [60, 60] }
+  );
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+
+  const markers = offices.map((o) =>
+    L.circleMarker(o.coords, { radius: 10, color: '#1b1d23', fillColor: '#1b1d23', fillOpacity: 1 })
+      .addTo(map)
+      .bindPopup(`<strong>${o.name}</strong><br>${o.address}`)
+  );
+
+  document.querySelectorAll<HTMLButtonElement>('[data-office]').forEach((button) =>
+    button.addEventListener('click', () => {
+      const i = Number(button.dataset.office);
+      mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      map.flyTo(offices[i].coords, 16);
+      markers[i].openPopup();
+    })
+  );
+
+  const form = document.querySelector<HTMLFormElement>('[data-form]')!;
+  const status = form.querySelector<HTMLElement>('[data-status]')!;
+  const inputs = [
+    ...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea'),
+  ];
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validate = (input: HTMLInputElement | HTMLTextAreaElement) => {
+    const value = input.value.trim();
+    const error = !value
+      ? 'Can’t be empty'
+      : input.type === 'email' && !EMAIL.test(value)
+        ? 'Please use a valid email address'
+        : '';
+    input.setAttribute('aria-invalid', String(Boolean(error)));
+    document.getElementById(`${input.name}-error`)!.textContent = error;
+    return !error;
+  };
+
+  form.addEventListener('input', (e) => {
+    const input = e.target as HTMLInputElement;
+    if (input.getAttribute('aria-invalid') === 'true') validate(input);
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const invalid = inputs.filter((input) => !validate(input));
+    if (invalid.length) {
+      status.textContent = '';
+      invalid[0].focus();
+      return;
+    }
+    form.reset();
+    status.textContent = 'Thanks! We’ll be in touch soon.';
+  });
+</script>
