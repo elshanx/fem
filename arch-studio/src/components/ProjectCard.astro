@@ -1,0 +1,47 @@
+---
+import Picture from './Picture.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  file: string;
+  href?: string;
+  number?: number;
+  class?: string;
+}
+
+const { title, subtitle, file, href, number, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'group relative isolate flex h-60 cursor-pointer flex-col justify-end overflow-hidden text-white lg:h-140',
+    className,
+  ]}
+>
+  <Picture
+    page="portfolio"
+    file={file}
+    alt=""
+    class="absolute inset-0 -z-10 size-full object-cover"
+  />
+  <span
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-linear-to-b from-transparent to-black/50 lg:top-1/2"
+  ></span>
+  <span
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-white/50 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+  ></span>
+  {number && (
+    <span
+      aria-hidden="true"
+      class="absolute top-10 right-0 hidden text-[250px] leading-[0.8] font-bold tracking-[-5px] text-white/50 md:block lg:top-[45px] lg:-right-4"
+    >
+      {number}
+    </span>
+  )}
+  <h3 class="heading-m">{title}</h3>
+  <p class="opacity-75">{subtitle}</p>
+</a>

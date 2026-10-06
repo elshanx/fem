@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-lg: 80rem;
+
+  --font-sans: 'League Spartan', sans-serif;
+
+  --color-dark: #1b1d23;
+  --color-grey-dark: #60636d;
+  --color-grey: #7d828f;
+  --color-grey-light: #c8ccd8;
+  --color-grey-lighter: #eeeff4;
+  --color-red: #df5656;
+}
+
+@utility wrap {
+  padding-inline: 2rem;
+  @media (width >= 48rem) {
+    padding-inline: 97px;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 165px;
+  }
+}
+
+@utility heading-xl {
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+  font-weight: 700;
+  @media (width >= 48rem) {
+    font-size: 6rem;
+    line-height: 0.85;
+    letter-spacing: -2px;
+  }
+}
+
+@utility heading-l {
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+  font-weight: 700;
+  @media (width >= 48rem) {
+    font-size: 4.5rem;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+}
+
+@utility heading-ghost {
+  font-size: 7.5rem;
+  line-height: 1;
+  letter-spacing: -3px;
+  font-weight: 700;
+  color: var(--color-grey-lighter);
+  user-select: none;
+  @media (width >= 80rem) {
+    font-size: 15.625rem;
+    line-height: 0.8;
+    letter-spacing: -5px;
+  }
+}
+
+@utility heading-m {
+  font-size: 2rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+@utility text-label {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+@layer base {
+  body {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--color-grey-dark);
+    background: white;
+  }
+  picture {
+    display: contents;
+  }
+  .leaflet-tile-pane {
+    filter: grayscale(1);
+  }
+}

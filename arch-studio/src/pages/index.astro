@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import welcome from '../assets/home/desktop/image-welcome.jpg';
+import Layout from '../layouts/Layout.astro';
+import Picture from '../components/Picture.astro';
+import Button from '../components/Button.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const slides = [
+  {
+    file: 'image-hero-paramour.jpg',
+    title: 'Project Paramour',
+    text: 'Project made for an art museum near Southwest London. Project Paramour is a statement of bold, modern architecture.',
+  },
+  {
+    file: 'image-hero-seraph.jpg',
+    title: 'Seraph Station',
+    text: 'The Seraph Station project challenged us to design a unique station that would transport people through time. The result is a fresh and futuristic model inspired by space stations.',
+  },
+  {
+    file: 'image-hero-federal.jpg',
+    title: 'Federal II Tower',
+    text: 'A sequel theme project for a tower originally built in the 1800s. We achieved this with a striking look of brutal minimalism with modern touches.',
+  },
+  {
+    file: 'image-hero-trinity.jpg',
+    title: 'Trinity Bank Tower',
+    text: 'Trinity Bank challenged us to make a concept for a 84 story building located in the middle of a city with a high earthquake frequency. For this project we used curves to blend design and stability to meet our objectives.',
+  },
+];
+
+const featured = [
+  { title: 'Project Del Sol', file: 'image-del-sol.jpg' },
+  { title: '228B Tower', file: 'image-228b.jpg' },
+  { title: 'Le Prototype', file: 'image-prototype.jpg' },
+];
+---
+
+<Layout title="Home" label="Home">
+  <h1 class="sr-only">Arch Studio</h1>
+
+  <section class="md:wrap" aria-roledescription="carousel" aria-label="Our projects">
+    <div class="relative h-140 lg:h-180">
+      {slides.map((slide, i) => (
+        <div
+          data-slide
+          inert={i > 0}
+          class:list={[
+            'absolute inset-0 isolate flex items-center px-8 transition-[opacity,visibility] duration-500 md:px-14 lg:px-50',
+            i > 0 && 'invisible opacity-0',
+          ]}
+        >
+          <Picture
+            page="home"
+            file={slide.file}
+            alt=""
+            loading={i === 0 ? 'eager' : 'lazy'}
+            class="absolute inset-0 -z-10 size-full object-cover"
+          />
+          <span aria-hidden="true" class="absolute inset-0 -z-10 bg-black/35" />
+          <div class="max-w-[434px] text-white">
+            <h2 class="heading-xl">{slide.title}</h2>
+            <p class="md:mt-2">{slide.text}</p>
+            <Button href="/portfolio" class="mt-20 md:mt-10">
+              See Our Portfolio
+            </Button>
+          </div>
+        </div>
+      ))}
+      <div class="absolute bottom-0 left-0 hidden -translate-x-20 lg:flex">
+        {slides.map((slide, i) => (
+          <button
+            type="button"
+            data-dot
+            aria-label={`Show ${slide.title}`}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+            class="text-label size-20 bg-white text-grey transition-colors hover:bg-grey-lighter aria-pressed:bg-dark aria-pressed:text-white"
+          >
+            {String(i + 1).padStart(2, '0')}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap relative isolate mt-18 md:mt-24 lg:mt-[109px]">
+    <p
+      aria-hidden="true"
+      class="heading-ghost hidden md:block lg:absolute lg:top-0 lg:left-[165px] lg:-z-10"
+    >
+      Welcome
+    </p>
+    <div class="flex items-end justify-end gap-[125px] md:mt-6 lg:mt-0 lg:pt-[86px]">
+      <div class="lg:w-[446px] lg:shrink-0">
+        <span class="block h-px w-[65px] bg-grey-light md:hidden"></span>
+        <h2 class="heading-l mt-16 text-dark md:mt-0 md:max-w-[446px]">Welcome to Arch Studio</h2>
+        <div class="mt-6 space-y-6 md:mt-10">
+          <p>
+            We have a unique network and skillset to help bring your projects to life. Our small
+            team of highly skilled individuals combined with our large network put us in a strong
+            position to deliver exceptional results.
+          </p>
+          <p>
+            Over the past 10 years, we have worked on all kinds of projects. From stations to
+            high-rise buildings, we create spaces that inspire and delight.
+          </p>
+          <p>
+            We work closely with our clients so that we understand the intricacies of each project.
+            This allows us to work in harmony the surrounding area to create truly stunning projects
+            that will stand the test of time.
+          </p>
+        </div>
+      </div>
+      <Image
+        src={welcome}
+        alt=""
+        loading="lazy"
+        class="hidden h-[568px] w-[350px] shrink-0 object-cover lg:block"
+      />
+    </div>
+  </section>
+
+  <section class="mt-[113px] md:wrap md:mt-[234px] lg:mt-50">
+    <div class="relative isolate flex h-140 items-center px-8 md:px-14 lg:px-50">
+      <Picture
+        page="home"
+        file="image-small-team.jpg"
+        alt=""
+        class="absolute inset-0 -z-10 size-full object-cover"
+      />
+      <span aria-hidden="true" class="absolute inset-0 -z-10 bg-black/50"></span>
+      <div>
+        <h2 class="heading-l text-white md:max-w-[445px]">Small team, big ideas</h2>
+        <Button href="/about" class="mt-[30px]">
+          About Us
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap mt-[73px] md:mt-50 lg:mb-10">
+    <div class="flex items-center justify-between">
+      <h2 class="heading-l text-dark">Featured</h2>
+      <div class="hidden md:block">
+        <Button href="/portfolio">See All</Button>
+      </div>
+    </div>
+    <ul class="mt-10 grid gap-6 md:mt-16 md:gap-[30px] lg:grid-cols-3">
+      {featured.map((project, i) => (
+        <li>
+          <ProjectCard
+            href="/portfolio"
+            title={project.title}
+            subtitle="View All Projects"
+            file={project.file}
+            number={i + 1}
+            class="px-6 pb-4 md:px-10 md:pb-8 lg:pb-10"
+          />
+        </li>
+      ))}
+    </ul>
+    <Button href="/portfolio" class="mt-6 w-full md:hidden">
+      See All
+    </Button>
+  </section>
+</Layout>
+
+<script>
+  const slides = [...document.querySelectorAll<HTMLElement>('[data-slide]')];
+  const dots = [...document.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+
+  dots.forEach((dot, i) =>
+    dot.addEventListener('click', () => {
+      slides.forEach((slide, j) => {
+        slide.classList.toggle('invisible', i !== j);
+        slide.classList.toggle('opacity-0', i !== j);
+        slide.inert = i !== j;
+      });
+      dots.forEach((d, j) => d.setAttribute('aria-pressed', String(i === j)));
+    })
+  );
+</script>
