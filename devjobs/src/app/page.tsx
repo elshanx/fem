@@ -1,13 +1,35 @@
-import Header from '@/components/Header/Header';
-import JobList from '@/components/JobList/JobList';
+import { Suspense, ViewTransition } from 'react';
+import JobListSkeleton from '@/components/JobListSkeleton';
+import JobResults from '@/components/JobResults';
+import PageTransition from '@/components/PageTransition';
+import SearchForm from '@/components/SearchForm';
+import { parseFilters, toQueryString } from '@/lib/filters';
 
-export default function Home() {
+export default async function Home({ searchParams }: PageProps<'/'>) {
+  const filters = parseFilters(await searchParams);
+  const filterKey = toQueryString({ ...filters, page: 1 });
+
   return (
-    <section className='min-h-[100dvh] bg-light-grey dark:bg-midnight'>
-      <Header />
-      <main className='mx-auto px-6 pb-[62px] pt-[57px] md:px-10 xl:max-w-[1110px] xl:px-0'>
-        <JobList />
+    <PageTransition>
+      <main className='pb-16 md:pb-15.5 xl:pb-26'>
+        <SearchForm key={filterKey} filters={filters} />
+
+        <div className='container-page mt-14.25 md:mt-17.5 xl:mt-26.25'>
+          <h1 className='sr-only'>Developer jobs</h1>
+          <Suspense
+            key={filterKey}
+            fallback={
+              <ViewTransition exit='slide-down' default='none'>
+                <JobListSkeleton />
+              </ViewTransition>
+            }
+          >
+            <ViewTransition enter='slide-up' default='none'>
+              <JobResults filters={filters} />
+            </ViewTransition>
+          </Suspense>
+        </div>
       </main>
-    </section>
+    </PageTransition>
   );
 }

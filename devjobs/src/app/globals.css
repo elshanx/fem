@@ -1,3 +1,215 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-violet: #5964e0;
+  --color-light-violet: #939bf4;
+  --color-very-dark-blue: #19202d;
+  --color-midnight: #121721;
+  --color-light-grey: #f4f6f8;
+  --color-gray: #9daec2;
+  --color-dark-grey: #6e8098;
+
+  --font-sans: var(--font-kumbh-sans), sans-serif;
+
+  --breakpoint-xl: 90rem;
+
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+
+  --text-h1: 1.75rem;
+  --text-h1--line-height: 2.125rem;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.8125rem;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.5rem;
+  --text-h4: 0.875rem;
+  --text-h4--line-height: 1.125rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-277.5 px-6 md:px-10 xl:px-0;
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet dark:focus-visible:outline-light-violet;
+}
+
+@utility btn {
+  @apply inline-flex h-12 cursor-pointer items-center justify-center rounded-[0.3125rem] px-7 text-body font-bold focus-ring transition-colors;
+}
+
+@utility btn-primary {
+  @apply btn bg-violet text-white hover:bg-light-violet;
+}
+
+@utility btn-secondary {
+  @apply btn bg-violet/10 text-violet hover:bg-violet/35 dark:bg-white/10 dark:text-white dark:hover:bg-white/35;
+}
+
+body {
+  @apply bg-light-grey text-body text-dark-grey dark:bg-midnight;
+}
+
+:root {
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
+  --duration-move: 400ms;
+}
+
+@keyframes fade {
+  from {
+    filter: blur(3px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-x {
+  from {
+    translate: var(--slide-offset) 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes slide-y {
+  from {
+    translate: 0 10px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+::view-transition-group(.morph) {
+  animation-duration: 350ms;
+  animation-timing-function: ease-in-out;
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide-x reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide-x;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide-x reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide-x;
+}
+
+::view-transition-old(.slide-down) {
+  animation:
+    var(--duration-exit) ease-out both fade reverse,
+    var(--duration-exit) ease-out both slide-y reverse;
+}
+::view-transition-new(.slide-up) {
+  animation:
+    var(--duration-enter) ease-in var(--duration-exit) both fade,
+    var(--duration-move) ease-in both slide-y;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+.card-in {
+  animation: card-in 300ms ease-out both;
+  animation-delay: calc(min(var(--i, 0), 11) * 30ms);
+}
+
+@keyframes pulse-soft {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (width < 48rem) {
+  #search-filters {
+    opacity: 0;
+    scale: 0.96;
+    transition:
+      opacity 200ms ease-out,
+      scale 200ms ease-out,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+  #search-filters[open] {
+    opacity: 1;
+    scale: 1;
+  }
+  #search-filters::backdrop {
+    opacity: 0;
+    transition:
+      opacity 200ms ease-out,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+  #search-filters[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    #search-filters[open],
+    #search-filters[open]::backdrop {
+      opacity: 0;
+    }
+    #search-filters[open] {
+      scale: 0.96;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  .card-in,
+  .animate-pulse-soft {
+    animation: none;
+  }
+  #search-filters,
+  #search-filters::backdrop {
+    transition: none;
+  }
+}

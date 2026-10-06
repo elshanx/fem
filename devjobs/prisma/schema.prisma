@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Job {
+  id                  Int      @id
+  company             String
+  logo                String
+  logoBackground      String
+  position            String
+  postedAt            String
+  contract            String
+  location            String
+  website             String
+  apply               String
+  description         String
+  requirementsContent String
+  requirementsItems   String[]
+  roleContent         String
+  roleItems           String[]
+
+  @@index([contract])
+}
