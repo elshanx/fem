@@ -15,6 +15,8 @@
 
   --breakpoint-xl: 90rem;
 
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+
   /* Figma type scale */
   --text-h1: 1.75rem;
   --text-h1--line-height: 2.125rem;
@@ -50,4 +52,176 @@
 
 body {
   @apply bg-light-grey text-body text-dark-grey dark:bg-midnight;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion: view transitions (React <ViewTransition>) and small CSS    */
+/* animations. Subtle on purpose: 150–400ms, small offsets.           */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
+  --duration-move: 400ms;
+}
+
+@keyframes fade {
+  from {
+    filter: blur(3px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-x {
+  from {
+    translate: var(--slide-offset) 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes slide-y {
+  from {
+    translate: 0 10px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+/* Card → detail: the logo tile and title morph between pages. */
+::view-transition-group(.morph) {
+  animation-duration: 350ms;
+  animation-timing-function: ease-in-out;
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+/* Directional page slides: forward goes left, back goes right. */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide-x reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide-x;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide-x reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide-x;
+}
+
+/* Search results: the skeleton leaves quickly, results arrive gently. */
+::view-transition-old(.slide-down) {
+  animation:
+    var(--duration-exit) ease-out both fade reverse,
+    var(--duration-exit) ease-out both slide-y reverse;
+}
+::view-transition-new(.slide-up) {
+  animation:
+    var(--duration-enter) ease-in var(--duration-exit) both fade,
+    var(--duration-move) ease-in both slide-y;
+}
+
+/* Theme switch: only the circular clip (driven from ThemeToggle) animates. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Cards fade up as they mount (first load and Load More), staggered per batch. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+.card-in {
+  animation: card-in 300ms ease-out both;
+  animation-delay: calc(min(var(--i, 0), 11) * 30ms);
+}
+
+@keyframes pulse-soft {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Mobile filter dialog fades and scales; from tablet up it is display: contents. */
+@media (width < 48rem) {
+  #search-filters {
+    opacity: 0;
+    scale: 0.96;
+    transition:
+      opacity 200ms ease-out,
+      scale 200ms ease-out,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+  #search-filters[open] {
+    opacity: 1;
+    scale: 1;
+  }
+  #search-filters::backdrop {
+    opacity: 0;
+    transition:
+      opacity 200ms ease-out,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+  #search-filters[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    #search-filters[open],
+    #search-filters[open]::backdrop {
+      opacity: 0;
+    }
+    #search-filters[open] {
+      scale: 0.96;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  .card-in,
+  .animate-pulse-soft {
+    animation: none;
+  }
+  #search-filters,
+  #search-filters::backdrop {
+    transition: none;
+  }
 }

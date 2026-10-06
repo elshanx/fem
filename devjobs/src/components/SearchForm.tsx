@@ -70,6 +70,7 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
         {/* Backdrop click mirrors Esc, which <dialog> already handles for keyboard users. */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
         <dialog
+          id='search-filters'
           ref={dialogRef}
           aria-label='Filters'
           onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}

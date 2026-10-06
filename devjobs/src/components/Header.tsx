@@ -11,7 +11,12 @@ export default function Header() {
       <HeaderBgDesktop className='absolute top-0 left-0 hidden xl:block' />
 
       <div className='relative container-page flex items-center justify-between pt-8 md:pt-[2.625rem] xl:pt-[2.75rem]'>
-        <Link href='/' aria-label='devjobs home' className='rounded-sm focus-ring'>
+        <Link
+          href='/'
+          transitionTypes={['nav-back']}
+          aria-label='devjobs home'
+          className='rounded-sm focus-ring'
+        >
           <Logo />
         </Link>
         <ThemeToggle />
