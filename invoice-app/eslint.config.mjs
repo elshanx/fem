@@ -19,7 +19,7 @@ const eslintConfig = [
   ...configs.next.typescript,
   {
     name: 'project/tooling-files',
-    files: ['*.config.{mjs,ts}', '**/*.test.ts', 'prisma/**'],
+    files: ['*.config.{mjs,ts}', '**/*.test.ts', 'prisma/**', 'e2e/**'],
     rules: {
       'import-x/no-extraneous-dependencies': ['error', { devDependencies: true }],
     },

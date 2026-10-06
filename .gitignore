@@ -18,3 +18,7 @@
 
 # Generated Prisma clients (rebuilt by `prisma generate` on install)
 **/src/generated/
+
+# Playwright output
+**/test-results/
+**/playwright-report/
