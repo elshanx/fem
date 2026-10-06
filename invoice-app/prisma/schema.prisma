@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  draft
+  pending
+  paid
+}
+
+model Invoice {
+  id             String        @id
+  createdAt      DateTime      @db.Date
+  paymentDue     DateTime      @db.Date
+  paymentTerms   Int
+  description    String
+  clientName     String
+  clientEmail    String
+  status         Status
+  senderStreet   String
+  senderCity     String
+  senderPostCode String
+  senderCountry  String
+  clientStreet   String
+  clientCity     String
+  clientPostCode String
+  clientCountry  String
+  items          InvoiceItem[]
+
+  @@index([status])
+}
+
+model InvoiceItem {
+  id         Int     @id @default(autoincrement())
+  invoiceId  String
+  invoice    Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  position   Int
+  name       String
+  quantity   Int
+  priceCents Int
+
+  @@index([invoiceId])
+}
