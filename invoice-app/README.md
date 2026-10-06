@@ -37,7 +37,15 @@ npm run db:seed
 npm run dev
 ```
 
-`npm test` runs the unit tests, `npm run lint` the Airbnb rules, `npm run typecheck` the types, and `npm run format` Prettier.
+`npm test` runs the unit tests, `npm run test:e2e` the browser tests, `npm run lint` the Airbnb rules, `npm run typecheck` the types, and `npm run format` Prettier.
+
+The browser tests (Playwright, in `e2e/`) need their own database, because every run wipes and re-seeds it:
+
+```bash
+createdb invoice_app_test   # then set E2E_DATABASE_URL in .env
+npx playwright install chromium
+npm run test:e2e
+```
 
 ## Author
 
