@@ -24,7 +24,7 @@ export default function Statistics() {
       <h2 className='text-[1.75rem] font-bold text-gray-950 lg:text-[2.5rem]'>
         Advanced Statistics
       </h2>
-      <p className='mx-auto mt-4 max-w-[33rem] text-base leading-7 lg:text-lg'>
+      <p className='mx-auto mt-4 max-w-132 text-base leading-7 lg:text-lg'>
         Track how your links are performing across the web with our advanced statistics dashboard.
       </p>
 
@@ -36,9 +36,9 @@ export default function Statistics() {
         {FEATURES.map(({ icon, title, text }, i) => (
           <li
             key={title}
-            className={`relative rounded-md bg-white px-8 pt-[4.75rem] pb-10 lg:flex-1 ${['', 'lg:mt-11', 'lg:mt-22'][i]} lg:mb-auto`}
+            className={`relative rounded-md bg-white px-8 pt-19 pb-10 lg:flex-1 ${['', 'lg:mt-11', 'lg:mt-22'][i]} lg:mb-auto`}
           >
-            <span className='absolute -top-11 left-1/2 grid size-[5.5rem] -translate-x-1/2 place-items-center rounded-full bg-violet lg:left-8 lg:translate-x-0'>
+            <span className='absolute -top-11 left-1/2 grid size-22 -translate-x-1/2 place-items-center rounded-full bg-violet lg:left-8 lg:translate-x-0'>
               <Image src={`/images/${icon}`} alt='' width={40} height={40} />
             </span>
             <h3 className='text-[1.375rem] font-bold text-gray-950'>{title}</h3>
