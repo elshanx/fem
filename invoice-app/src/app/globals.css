@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-violet: #7c5dfa;
+  --color-violet-light: #9277ff;
+  --color-navy-950: #141625;
+  --color-navy-900: #1e2139;
+  --color-navy-800: #252945;
+  --color-slate: #373b53;
+  --color-lavender: #dfe3fa;
+  --color-gray: #888eb0;
+  --color-gray-blue: #7e88c3;
+  --color-ink: #0c0e16;
+  --color-red: #ec5757;
+  --color-red-light: #ff9797;
+  --color-ghost: #f8f8fb;
+  --color-ghost-blue: #f9fafe;
+  --color-paid: #33d69f;
+  --color-pending: #ff8f00;
+
+  --font-sans: var(--font-league-spartan), sans-serif;
+
+  --text-heading-l: 2.25rem;
+  --text-heading-l--line-height: 2.0625rem;
+  --text-heading-l--letter-spacing: -0.0625rem;
+  --text-heading-m: 1.5rem;
+  --text-heading-m--line-height: 1.375rem;
+  --text-heading-m--letter-spacing: -0.047rem;
+  --text-heading-s: 0.9375rem;
+  --text-heading-s--line-height: 1.5rem;
+  --text-heading-s--letter-spacing: -0.016rem;
+  --text-body: 0.8125rem;
+  --text-body--line-height: 1.125rem;
+  --text-body--letter-spacing: -0.006rem;
+
+  --spacing-sidebar: 6.4375rem;
+  --spacing-topbar: 4.5rem;
+  --spacing-topbar-md: 5rem;
+
+  --shadow-card: 0 10px 10px -10px rgb(72 84 159 / 0.1);
+  --shadow-menu: 0 10px 20px rgb(72 84 159 / 0.25);
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet dark:focus-visible:outline-violet-light;
+}
+
+@utility btn {
+  @apply inline-flex h-12 cursor-pointer items-center justify-center rounded-full px-6 text-heading-s font-bold whitespace-nowrap focus-ring transition-colors disabled:cursor-wait disabled:opacity-60;
+}
+
+@utility btn-primary {
+  @apply btn bg-violet text-white hover:bg-violet-light;
+}
+
+@utility btn-light {
+  @apply btn bg-ghost-blue text-gray-blue hover:bg-lavender dark:bg-navy-800 dark:text-lavender dark:hover:bg-white dark:hover:text-gray-blue;
+}
+
+@utility btn-dark {
+  @apply btn bg-slate text-gray hover:bg-ink dark:text-lavender dark:hover:bg-navy-900;
+}
+
+@utility btn-danger {
+  @apply btn bg-red text-white hover:bg-red-light;
+}
+
+@utility card {
+  @apply rounded-lg bg-white shadow-card dark:bg-navy-900 dark:shadow-none;
+}
+
+@utility field {
+  @apply h-12 w-full rounded-sm border border-lavender bg-white px-5 text-heading-s font-bold text-ink transition-colors outline-none hover:border-violet-light focus:border-violet-light dark:border-navy-800 dark:bg-navy-900 dark:text-white dark:hover:border-violet-light dark:focus:border-violet-light;
+}
+
+body {
+  @apply bg-ghost text-body font-medium text-gray-blue transition-colors dark:bg-navy-950 dark:text-lavender;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-bold text-ink dark:text-white;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.dark input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+#invoice-drawer {
+  translate: -100% 0;
+  transition:
+    translate 300ms ease-out,
+    overlay 300ms allow-discrete,
+    display 300ms allow-discrete;
+}
+#invoice-drawer[open] {
+  translate: 0 0;
+}
+#invoice-drawer::backdrop {
+  top: var(--spacing-topbar);
+  background: rgb(0 0 0 / 0.5);
+  opacity: 0;
+  transition:
+    opacity 300ms ease-out,
+    overlay 300ms allow-discrete,
+    display 300ms allow-discrete;
+}
+#invoice-drawer[open]::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  #invoice-drawer[open] {
+    translate: -100% 0;
+  }
+  #invoice-drawer[open]::backdrop {
+    opacity: 0;
+  }
+}
+@media (width >= 48rem) {
+  #invoice-drawer::backdrop {
+    top: var(--spacing-topbar-md);
+  }
+}
+@media (width >= 64rem) {
+  #invoice-drawer::backdrop {
+    top: 0;
+    left: var(--spacing-sidebar);
+  }
+}
+
+.confirm-dialog {
+  opacity: 0;
+  scale: 0.96;
+  transition:
+    opacity 200ms ease-out,
+    scale 200ms ease-out,
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
+}
+.confirm-dialog[open] {
+  opacity: 1;
+  scale: 1;
+}
+.confirm-dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+@starting-style {
+  .confirm-dialog[open] {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+.row-in {
+  animation: row-in 300ms ease-out both;
+  animation-delay: calc(min(var(--i, 0), 10) * 30ms);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #invoice-drawer,
+  #invoice-drawer::backdrop,
+  .confirm-dialog,
+  .row-in {
+    transition: none;
+    animation: none;
+  }
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
