@@ -15,6 +15,7 @@ My solutions to [Frontend Mentor](https://www.frontendmentor.io) challenges, all
 | [News homepage](./news-homepage)                                    | HTML, Tailwind CSS, JS                               | <img src="./news-homepage/preview.jpg" width="240" alt="News homepage preview">                                        |
 | [Loopstudios landing page](./loopstudios)                           | HTML, Tailwind CSS, JS                               | <img src="./loopstudios/preview.jpg" width="240" alt="Loopstudios landing page preview">                               |
 | [Article preview component](./article-preview-component)            | HTML, CSS, JS                                        | <img src="./article-preview-component/design/desktop-preview.jpg" width="240" alt="Article preview component preview"> |
+| [Base Apparel coming soon page](./base-apparel-coming-soon)         | HTML, CSS, JS                                        | <img src="./base-apparel-coming-soon/preview.jpg" width="240" alt="Base Apparel coming soon page preview">             |
 | [Ping coming soon page](./ping-coming-soon)                         | HTML, Tailwind CSS, JS                               | <img src="./ping-coming-soon/preview.jpg" width="240" alt="Ping coming soon page preview">                             |
 | [IP address tracker](./ip-address-tracker)                          | HTML, Tailwind CSS, JS, Netlify Functions            | <img src="./ip-address-tracker/design/desktop-preview.jpg" width="240" alt="IP address tracker preview">               |
 | [URL shortening API](./url-shortening-api)                          | Next.js, TypeScript, Tailwind CSS, Route Handlers    | <img src="./url-shortening-api/preview.jpg" width="240" alt="URL shortening API preview">                              |
@@ -35,7 +36,7 @@ npm install
 - **IP address tracker:** run `npm run dev` (starts `netlify dev`).
 - **Devjobs, URL shortening API, invoice app:** run `npm run dev`. Devjobs and the invoice app need Postgres; see their READMEs.
 - **Arch Studio:** run `npm run dev` (Astro dev server).
-- **QR code:** plain HTML/CSS, so just open `index.html`.
+- **QR code, Article preview, Base Apparel:** plain HTML/CSS/JS, so just open `index.html`.
 
 ## Author
 
