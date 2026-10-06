@@ -13,12 +13,12 @@ export default function JobCard(props: Props) {
   const { id, company, logo, logoBackground, position, postedAt, contract, location } = props;
 
   return (
-    <article className='group relative flex h-full min-h-[14.25rem] flex-col rounded-md bg-white px-8 pt-[3.0625rem] pb-8 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-violet dark:bg-very-dark-blue'>
+    <article className='group relative flex h-full min-h-57 flex-col rounded-md bg-white px-8 pt-12.25 pb-8 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-violet dark:bg-very-dark-blue'>
       <ViewTransition name={`logo-${id}`} share='morph' default='none'>
         <CompanyLogo
           logo={logo}
           background={logoBackground}
-          className='absolute -top-[1.5625rem] left-8 size-[3.125rem] rounded-[0.9375rem]'
+          className='absolute -top-6.25 left-8 size-12.5 rounded-[0.9375rem]'
         />
       </ViewTransition>
       <JobMeta postedAt={postedAt} contract={contract} />

@@ -30,7 +30,7 @@
 }
 
 @utility container-page {
-  @apply mx-auto w-full max-w-[69.375rem] px-6 md:px-10 xl:px-0;
+  @apply mx-auto w-full max-w-277.5 px-6 md:px-10 xl:px-0;
 }
 
 @utility focus-ring {

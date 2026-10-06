@@ -11,10 +11,10 @@ export default async function Home({ searchParams }: PageProps<'/'>) {
 
   return (
     <PageTransition>
-      <main className='pb-16 md:pb-[3.875rem] xl:pb-26'>
+      <main className='pb-16 md:pb-15.5 xl:pb-26'>
         <SearchForm key={filterKey} filters={filters} />
 
-        <div className='container-page mt-[3.5625rem] md:mt-[4.375rem] xl:mt-[6.5625rem]'>
+        <div className='container-page mt-14.25 md:mt-17.5 xl:mt-26.25'>
           <h1 className='sr-only'>Developer jobs</h1>
           <Suspense
             key={filterKey}

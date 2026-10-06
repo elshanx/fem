@@ -9,7 +9,7 @@ export default function Header() {
       <HeaderBgTablet className='absolute top-0 left-0 hidden md:block xl:hidden' />
       <HeaderBgDesktop className='absolute top-0 left-0 hidden xl:block' />
 
-      <div className='relative container-page flex items-center justify-between pt-8 md:pt-[2.625rem] xl:pt-[2.75rem]'>
+      <div className='relative container-page flex items-center justify-between pt-8 md:pt-10.5 xl:pt-11'>
         <Link
           href='/'
           transitionTypes={['nav-back']}

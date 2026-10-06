@@ -21,16 +21,16 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
 
   return (
     <PageTransition>
-      <main className='container-page max-w-[45.625rem] xl:px-0'>
+      <main className='container-page max-w-182.5 xl:px-0'>
         <section
           aria-label={job.company}
-          className='relative -mt-4 flex flex-col items-center rounded-md bg-white px-6 pt-[3.0625rem] pb-8 text-center md:-mt-10 md:h-[8.75rem] md:flex-row md:p-0 md:pr-10 md:text-left dark:bg-very-dark-blue'
+          className='relative -mt-4 flex flex-col items-center rounded-md bg-white px-6 pt-12.25 pb-8 text-center md:-mt-10 md:h-35 md:flex-row md:p-0 md:pr-10 md:text-left dark:bg-very-dark-blue'
         >
           <ViewTransition name={`logo-${job.id}`} share='morph' default='none'>
             <CompanyLogo
               logo={job.logo}
               background={job.logoBackground}
-              className='absolute -top-[1.5625rem] size-[3.125rem] rounded-[0.9375rem] md:static md:size-[8.75rem] md:rounded-none md:rounded-bl-md'
+              className='absolute -top-6.25 size-12.5 rounded-[0.9375rem] md:static md:size-35 md:rounded-none md:rounded-bl-md'
               logoClassName='md:scale-[2]'
             />
           </ViewTransition>
@@ -38,15 +38,15 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
             <h2 className='text-h3 font-bold text-very-dark-blue md:text-h2 dark:text-white'>
               {job.company}
             </h2>
-            <p className='mt-[0.8125rem] md:mt-[0.8125rem]'>{displayUrl(job.website)}</p>
+            <p className='mt-3.25 md:mt-3.25'>{displayUrl(job.website)}</p>
           </div>
-          <a href={job.website} {...external} className='mt-[1.6875rem] btn-secondary md:mt-0'>
+          <a href={job.website} {...external} className='mt-6.75 btn-secondary md:mt-0'>
             Company Site
           </a>
         </section>
 
         <article className='mt-6 rounded-md bg-white px-6 py-10 md:mt-8 md:p-12 dark:bg-very-dark-blue'>
-          <header className='flex flex-col gap-[3.125rem] md:flex-row md:items-center md:justify-between md:gap-4'>
+          <header className='flex flex-col gap-12.5 md:flex-row md:items-center md:justify-between md:gap-4'>
             <div>
               <JobMeta postedAt={job.postedAt} contract={job.contract} />
               <ViewTransition name={`title-${job.id}`} share='morph' default='none'>
@@ -89,8 +89,8 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
         </article>
       </main>
 
-      <footer className='mt-16 bg-white py-6 md:mt-[3.3125rem] dark:bg-very-dark-blue'>
-        <div className='container-page flex max-w-[45.625rem] items-center justify-between gap-4 xl:px-0'>
+      <footer className='mt-16 bg-white py-6 md:mt-13.25 dark:bg-very-dark-blue'>
+        <div className='container-page flex max-w-182.5 items-center justify-between gap-4 xl:px-0'>
           <div className='hidden md:block'>
             <p className='text-h3 font-bold text-very-dark-blue dark:text-white'>{job.position}</p>
             <p className='mt-3'>{job.company}</p>

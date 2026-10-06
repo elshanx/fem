@@ -17,7 +17,7 @@ export default async function JobResults({ filters }: { filters: JobFilters }) {
 
   return (
     <>
-      <ul className='grid gap-y-[3.0625rem] md:grid-cols-2 md:gap-x-[0.6875rem] md:gap-y-[4.0625rem] xl:grid-cols-3 xl:gap-x-[1.875rem]'>
+      <ul className='grid gap-y-12.25 md:grid-cols-2 md:gap-x-2.75 md:gap-y-16.25 xl:grid-cols-3 xl:gap-x-7.5'>
         {jobs.map((job, index) => (
           <li
             key={job.id}

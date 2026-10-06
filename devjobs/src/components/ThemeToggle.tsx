@@ -66,7 +66,7 @@ export default function ThemeToggle() {
         aria-label='Dark mode'
         disabled={!mounted}
         onClick={toggle}
-        className='group flex h-6 w-12 cursor-pointer items-center rounded-full bg-white px-[0.3125rem] focus-ring focus-visible:outline-white'
+        className='group flex h-6 w-12 cursor-pointer items-center rounded-full bg-white px-1.25 focus-ring focus-visible:outline-white'
       >
         <span
           className={`size-3.5 rounded-full bg-violet transition-transform group-hover:bg-light-violet ${isDark ? 'translate-x-6' : ''}`}

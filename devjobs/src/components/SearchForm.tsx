@@ -69,11 +69,11 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
           ref={dialogRef}
           aria-label='Filters'
           onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}
-          className='m-auto w-[calc(100%-3rem)] max-w-[20.4375rem] rounded-md bg-white p-0 backdrop:bg-black/50 md:contents dark:bg-very-dark-blue'
+          className='m-auto w-[calc(100%-3rem)] max-w-81.75 rounded-md bg-white p-0 backdrop:bg-black/50 md:contents dark:bg-very-dark-blue'
         >
           <label
             htmlFor='search-location'
-            className='flex h-[4.5rem] items-center gap-4 border-b border-dark-grey/20 px-6 md:h-full md:w-[14.375rem] md:border-r md:border-b-0 xl:w-[18.75rem] xl:px-6'
+            className='flex h-18 items-center gap-4 border-b border-dark-grey/20 px-6 md:h-full md:w-57.5 md:border-r md:border-b-0 xl:w-75 xl:px-6'
           >
             <Location className='shrink-0' />
             <span className='sr-only'>Filter by location</span>
@@ -87,7 +87,7 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
             />
           </label>
 
-          <div className='flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-7 md:p-0 md:pl-5 xl:gap-[1.6875rem] xl:pl-8'>
+          <div className='flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-7 md:p-0 md:pl-5 xl:gap-6.75 xl:pl-8'>
             <label
               htmlFor='search-full-time'
               className='group flex cursor-pointer items-center gap-4 text-body font-bold text-very-dark-blue dark:text-white'
@@ -106,7 +106,7 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
                 Full Time<span className='md:hidden xl:inline'> Only</span>
               </span>
             </label>
-            <button type='submit' className='btn-primary w-full md:w-20 md:px-0 xl:w-[7.6875rem]'>
+            <button type='submit' className='btn-primary w-full md:w-20 md:px-0 xl:w-30.75'>
               Search
             </button>
           </div>
