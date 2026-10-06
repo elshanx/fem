@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-blue-500: hsl(223, 87%, 63%);
+  --color-blue-200: hsl(223, 100%, 88%);
+  --color-red-400: hsl(354, 100%, 66%);
+  --color-gray-400: hsl(0, 0%, 59%);
+  --color-blue-950: hsl(209, 33%, 12%);
+
+  --font-sans: 'Libre Franklin', sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-pop: pop 0.3s ease-out;
+
+  @keyframes float {
+    50% {
+      transform: translateY(-0.75rem);
+    }
+  }
+
+  @keyframes shake {
+    20%,
+    60% {
+      transform: translateX(-0.5rem);
+    }
+    40%,
+    80% {
+      transform: translateX(0.5rem);
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(-0.25rem);
+    }
+  }
+}
+
+.js [data-intro],
+.js [data-blob] {
+  visibility: hidden;
+}

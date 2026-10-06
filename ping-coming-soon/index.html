@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ping is launching soon. Subscribe and get notified." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js" defer></script>
+    <script src="./index.js" defer></script>
+
+    <title>Frontend Mentor | Ping coming soon page</title>
+  </head>
+  <body class="overflow-x-hidden font-sans text-blue-950">
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div
+        data-intro="grid"
+        class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-blue-200)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-blue-200)_1px,transparent_1px)] mask-[radial-gradient(ellipse_at_center,black,transparent_70%)] bg-size-[40px_40px] opacity-40"
+      ></div>
+      <div
+        data-blob
+        class="absolute -top-40 -left-40 size-112 rounded-full bg-blue-500/15 blur-3xl md:size-160"
+      ></div>
+      <div
+        data-blob
+        class="absolute top-1/3 -right-48 size-112 rounded-full bg-blue-200/40 blur-3xl md:size-160"
+      ></div>
+      <div
+        data-blob
+        class="absolute -bottom-48 left-1/4 size-112 rounded-full bg-[#2BCB6E]/10 blur-3xl md:size-160"
+      ></div>
+    </div>
+
+    <main class="mx-auto flex max-w-160 flex-col items-center px-6 pt-20 text-center md:pt-22">
+      <svg
+        data-intro="logo"
+        viewBox="0 0 86 26"
+        role="img"
+        aria-label="Ping"
+        class="h-4 w-auto overflow-visible md:h-6.5"
+      >
+        <path
+          fill="#15202A"
+          d="M5.008 25c.555 0 .832-.245.832-.736v-8c0-.235.117-.352.352-.352h4.8c2.603 0 4.699-.635 6.288-1.904 1.59-1.27 2.384-3.056 2.384-5.36 0-1.621-.41-2.987-1.232-4.096-.821-1.11-1.93-1.936-3.328-2.48-1.397-.544-2.981-.816-4.752-.816h-9.6c-.341 0-.512.203-.512.608V24.36c0 .213.048.373.144.48.096.107.272.16.528.16h4.096zm5.216-13.088H6.288c-.17 0-.288-.048-.352-.144-.064-.096-.096-.25-.096-.464V5.832c0-.213.048-.363.144-.448.096-.085.25-.128.464-.128H10c1.195 0 2.144.277 2.848.832.704.555 1.056 1.376 1.056 2.464 0 1.045-.33 1.867-.992 2.464-.661.597-1.557.896-2.688.896zM27.856 25c.32 0 .544-.059.672-.176.128-.117.192-.315.192-.592v-22.4c0-.384-.17-.576-.512-.576h-4.576c-.341 0-.512.203-.512.608v22.464c0 .235.053.405.16.512.107.107.288.16.544.16h4.032zm9.312 0c.235 0 .4-.037.496-.112.096-.075.144-.197.144-.368V10.344c0-.107.037-.17.112-.192.075-.021.155.021.24.128l10.208 14.336c.128.17.245.277.352.32.107.043.256.064.448.064H52.4a.66.66 0 00.432-.144.455.455 0 00.176-.368V1.736c0-.32-.139-.48-.416-.48H49.04c-.384 0-.576.192-.576.576v13.216c0 .235-.053.352-.16.352-.085 0-.192-.085-.32-.256L38.576 1.736c-.15-.213-.277-.347-.384-.4-.107-.053-.288-.08-.544-.08h-3.872c-.384 0-.576.203-.576.608v22.592c0 .363.213.544.64.544h3.328zm30.176.32c1.664 0 3.013-.288 4.048-.864a9.158 9.158 0 002.672-2.24c.15-.17.256-.181.32-.032l.928 2.304c.192.341.47.512.832.512h1.024c.15 0 .267-.043.352-.128a.476.476 0 00.128-.352V13.736a.703.703 0 00-.24-.56c-.16-.139-.39-.208-.688-.208l-8.544-.032c-.341 0-.512.15-.512.448v2.4c0 .192.043.33.128.416.085.085.213.128.384.128h3.872c.235 0 .352.096.352.288 0 .085-.01.15-.032.192l-.064.928c-.235 1.045-.736 1.915-1.504 2.608-.768.693-1.792 1.04-3.072 1.04-1.685 0-2.976-.65-3.872-1.952-.896-1.301-1.344-3.435-1.344-6.4 0-2.837.427-4.907 1.28-6.208.853-1.301 2.101-1.952 3.744-1.952 1.259 0 2.283.363 3.072 1.088.79.725 1.29 1.643 1.504 2.752.043.192.096.325.16.4.064.075.181.112.352.112l4.224-.64c.277-.021.416-.15.416-.384 0-.192-.021-.352-.064-.48-.213-1.173-.752-2.277-1.616-3.312-.864-1.035-1.984-1.872-3.36-2.512-1.376-.64-2.896-.96-4.56-.96-2.176 0-4.096.501-5.76 1.504-1.664 1.003-2.955 2.432-3.872 4.288-.917 1.856-1.376 4.021-1.376 6.496 0 2.41.437 4.528 1.312 6.352.875 1.824 2.117 3.237 3.728 4.24 1.61 1.003 3.493 1.504 5.648 1.504z"
+        />
+        <path
+          data-logo-dot
+          fill="#4C7BF3"
+          d="M85.072 25c.32 0 .55-.059.688-.176.139-.117.208-.315.208-.592v-4c0-.363-.16-.544-.48-.544h-4.384a.498.498 0 00-.368.144c-.096.096-.144.24-.144.432v4.064c0 .448.235.672.704.672h3.776z"
+        />
+      </svg>
+
+      <h1
+        data-intro="title"
+        class="mt-12 text-[1.375rem] font-light text-gray-400 md:mt-11 md:text-5xl"
+      >
+        We are launching
+        <strong data-soon class="inline-block font-bold text-blue-950">soon!</strong>
+      </h1>
+      <p data-intro="subtitle" class="mt-4 text-xs font-light md:mt-5 md:text-xl">
+        Subscribe and get notified
+      </p>
+
+      <form
+        id="notify-form"
+        class="mt-8 grid w-full gap-x-4 gap-y-2.5 md:mt-10 md:grid-cols-[1fr_auto] md:gap-y-1.5"
+        novalidate
+      >
+        <label for="email" class="sr-only">Email address</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Your email address..."
+          aria-describedby="email-error"
+          data-intro="field"
+          class="h-10 w-full rounded-full border border-blue-200 bg-white px-8 text-xs font-light transition-colors duration-200 outline-none placeholder:text-blue-200 focus:border-blue-500 aria-invalid:border-red-400 md:h-14 md:text-base"
+        />
+        <p
+          id="email-error"
+          aria-live="polite"
+          class="text-[0.625rem] text-red-400 italic empty:hidden motion-safe:animate-pop md:row-start-2 md:pl-8 md:text-left md:text-xs"
+        ></p>
+        <button
+          data-intro="field"
+          type="submit"
+          class="mt-2 h-10 cursor-pointer rounded-full bg-blue-500 px-16 text-xs font-semibold text-white shadow-[0_0.5rem_1rem_hsl(223_87%_63%/0.25)] transition duration-200 hover:-translate-y-0.5 hover:bg-blue-500/60 hover:shadow-[0_0.75rem_1.5rem_hsl(223_87%_63%/0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:translate-y-0 md:col-start-2 md:row-start-1 md:mt-0 md:h-14 md:px-15.5 md:text-base"
+        >
+          Notify Me
+        </button>
+      </form>
+
+      <div data-intro="dashboard" class="relative mt-18 w-full md:mt-23">
+        <img
+          src="./images/illustration-dashboard.svg"
+          alt=""
+          width="1280"
+          height="782"
+          class="w-full motion-safe:animate-float"
+        />
+      </div>
+    </main>
+
+    <footer class="mt-18 mb-10 flex flex-col items-center gap-6 px-6 text-center md:mt-18 md:mb-12">
+      <ul class="flex gap-3">
+        <li data-intro="social">
+          <a
+            href="#"
+            aria-label="Ping on Facebook"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li data-intro="social">
+          <a
+            href="#"
+            aria-label="Ping on Twitter"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li data-intro="social">
+          <a
+            href="#"
+            aria-label="Ping on Instagram"
+            class="grid size-8 place-items-center rounded-full border border-blue-200/60 text-blue-500 transition duration-200 hover:scale-110 hover:border-blue-500 hover:bg-blue-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="size-3.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="6" />
+              <circle cx="12" cy="12" r="4.5" />
+              <circle cx="17.75" cy="6.25" r="0.5" fill="currentColor" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <p data-intro="credit" class="text-[0.625rem] font-light text-gray-400 md:text-xs">
+        &copy; Copyright Ping. All rights reserved.
+      </p>
+      <p data-intro="credit" class="-mt-4 text-[0.625rem] font-light text-gray-400 md:text-xs">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io/challenges/ping-single-column-coming-soon-page-5cadd051fec04111f7b848da"
+          class="underline hover:no-underline"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://github.com/elshanx" class="italic underline hover:no-underline">elshanx</a
+        >.
+      </p>
+    </footer>
+  </body>
+</html>
