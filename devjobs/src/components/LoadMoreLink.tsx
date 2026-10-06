@@ -2,7 +2,6 @@
 
 import Link, { useLinkStatus } from 'next/link';
 
-// useLinkStatus must be called from inside the <Link> it reports on.
 function Label() {
   const { pending } = useLinkStatus();
   return <span aria-live='polite'>{pending ? 'Loading…' : 'Load More'}</span>;

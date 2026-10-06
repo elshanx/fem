@@ -13,7 +13,6 @@ model Job {
   logo                String
   logoBackground      String
   position            String
-  // Display string from the challenge data ("5h ago"), not a timestamp.
   postedAt            String
   contract            String
   location            String

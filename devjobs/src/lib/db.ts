@@ -2,7 +2,6 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@/generated/prisma/client';
 import env from '@/lib/env';
 
-// Reuse one client across dev hot reloads instead of opening a new pool each time.
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 const prisma =

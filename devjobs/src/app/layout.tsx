@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    // next-themes sets the theme class on <html> before hydration.
     <html lang='en' className={kumbhSans.variable} suppressHydrationWarning>
       <body className='min-h-dvh font-sans antialiased'>
         <ThemeProvider

@@ -6,7 +6,6 @@ import JobMeta from '@/components/JobMeta';
 import PageTransition from '@/components/PageTransition';
 import { getJob } from '@/lib/jobs';
 
-// generateMetadata and the page share one query per request.
 const loadJob = cache(async (id: string) => (await getJob(Number(id))) ?? notFound());
 
 const displayUrl = (url: string) => url.replace(/^https?:\/\//, '');
@@ -23,7 +22,6 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
   return (
     <PageTransition>
       <main className='container-page max-w-[45.625rem] xl:px-0'>
-        {/* Company bar */}
         <section
           aria-label={job.company}
           className='relative -mt-4 flex flex-col items-center rounded-md bg-white px-6 pt-[3.0625rem] pb-8 text-center md:-mt-10 md:h-[8.75rem] md:flex-row md:p-0 md:pr-10 md:text-left dark:bg-very-dark-blue'
@@ -47,7 +45,6 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
           </a>
         </section>
 
-        {/* Job details */}
         <article className='mt-6 rounded-md bg-white px-6 py-10 md:mt-8 md:p-12 dark:bg-very-dark-blue'>
           <header className='flex flex-col gap-[3.125rem] md:flex-row md:items-center md:justify-between md:gap-4'>
             <div>
@@ -92,7 +89,6 @@ export default async function JobPage({ params }: PageProps<'/job/[id]'>) {
         </article>
       </main>
 
-      {/* Sticky-style footer bar from the design */}
       <footer className='mt-16 bg-white py-6 md:mt-[3.3125rem] dark:bg-very-dark-blue'>
         <div className='container-page flex max-w-[45.625rem] items-center justify-between gap-4 xl:px-0'>
           <div className='hidden md:block'>

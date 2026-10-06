@@ -21,7 +21,6 @@ function applyThemeClass(theme: Theme) {
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  // The theme is only known in the browser; render a neutral switch on the server.
   const mounted = useSyncExternalStore(
     subscribe,
     () => true,
@@ -38,7 +37,6 @@ export default function ThemeToggle() {
       return;
     }
 
-    // Grow a circle from the switch to the farthest corner of the viewport.
     const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
     const x = left + width / 2;
     const y = top + height / 2;

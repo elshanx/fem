@@ -18,7 +18,6 @@ const subscribeDesktop = (onChange: () => void) => {
 
 export default function SearchForm({ filters }: { filters: JobFilters }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  // Only the placeholder differs by width; the server renders the short one.
   const isDesktop = useSyncExternalStore(
     subscribeDesktop,
     () => window.matchMedia(DESKTOP_QUERY).matches,
@@ -35,7 +34,6 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
       className='relative z-10 container-page -mt-10'
     >
       <div className='flex h-20 items-center rounded-md bg-white pr-4 pl-6 md:pr-4 md:pl-6 xl:pl-8 dark:bg-very-dark-blue'>
-        {/* Title */}
         <label
           htmlFor='search-title'
           className='flex h-full flex-1 items-center gap-4 md:border-r md:border-dark-grey/20 md:pr-4'
@@ -52,7 +50,6 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
           />
         </label>
 
-        {/* Mobile only: open the filter dialog, or search right away */}
         <button
           type='button'
           onClick={() => dialogRef.current?.showModal()}
@@ -66,8 +63,6 @@ export default function SearchForm({ filters }: { filters: JobFilters }) {
           <Search className='text-white' />
         </button>
 
-        {/* Location + Full Time: a modal on mobile, inline in the bar from tablet up */}
-        {/* Backdrop click mirrors Esc, which <dialog> already handles for keyboard users. */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
         <dialog
           id='search-filters'

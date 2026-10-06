@@ -1,6 +1,5 @@
 const PLACEHOLDERS = 6;
 
-/** Card-shaped placeholders shown while search results load. */
 export default function JobListSkeleton() {
   return (
     <div role='status' aria-live='polite'>

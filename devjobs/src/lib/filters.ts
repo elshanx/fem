@@ -18,7 +18,6 @@ const first = (value: string | string[] | undefined) => (Array.isArray(value) ? 
 const term = (value: string | string[] | undefined) =>
   (first(value) ?? '').trim().slice(0, MAX_TERM_LENGTH);
 
-/** Reads the search form's query string (?title=&location=&fullTime=on&page=2). */
 export function parseFilters(searchParams: SearchParams): JobFilters {
   const page = Number.parseInt(first(searchParams.page) ?? '', 10);
   return {
@@ -42,7 +41,6 @@ export function buildWhere({ title, location, fullTime }: JobFilters): Prisma.Jo
   };
 }
 
-/** Query string for the same filters on another page; omits empty values. */
 export function toQueryString({ title, location, fullTime, page }: JobFilters) {
   const params = new URLSearchParams();
   if (title) params.set('title', title);

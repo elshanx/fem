@@ -19,7 +19,6 @@ export default async function JobResults({ filters }: { filters: JobFilters }) {
     <>
       <ul className='grid gap-y-[3.0625rem] md:grid-cols-2 md:gap-x-[0.6875rem] md:gap-y-[4.0625rem] xl:grid-cols-3 xl:gap-x-[1.875rem]'>
         {jobs.map((job, index) => (
-          // --i staggers the entrance within each batch of PAGE_SIZE cards.
           <li
             key={job.id}
             className='card-in'

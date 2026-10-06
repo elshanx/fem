@@ -14,7 +14,6 @@ export default function JobCard(props: Props) {
 
   return (
     <article className='group relative flex h-full min-h-[14.25rem] flex-col rounded-md bg-white px-8 pt-[3.0625rem] pb-8 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-violet dark:bg-very-dark-blue'>
-      {/* Same names as on the detail page: the logo and title morph between them. */}
       <ViewTransition name={`logo-${id}`} share='morph' default='none'>
         <CompanyLogo
           logo={logo}
@@ -25,7 +24,6 @@ export default function JobCard(props: Props) {
       <JobMeta postedAt={postedAt} contract={contract} />
       <ViewTransition name={`title-${id}`} share='morph' default='none'>
         <h2 className='mt-4 text-h3 font-bold text-very-dark-blue transition-colors group-hover:text-dark-grey dark:text-white dark:group-hover:text-dark-grey'>
-          {/* The whole card is clickable through this one link. */}
           <Link
             href={`/job/${id}`}
             transitionTypes={['nav-forward']}

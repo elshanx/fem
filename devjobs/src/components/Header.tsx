@@ -5,7 +5,6 @@ import ThemeToggle from '@/components/ThemeToggle';
 export default function Header() {
   return (
     <header className='relative h-34 overflow-hidden bg-violet md:h-40 md:rounded-bl-[6.25rem]'>
-      {/* Pattern SVGs at native size, anchored left; their curve matches the header's corner. */}
       <HeaderBgMobile className='absolute top-0 left-0 md:hidden' />
       <HeaderBgTablet className='absolute top-0 left-0 hidden md:block xl:hidden' />
       <HeaderBgDesktop className='absolute top-0 left-0 hidden xl:block' />

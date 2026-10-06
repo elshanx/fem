@@ -21,7 +21,6 @@ const eslintConfig = [
     name: 'project/tooling-files',
     files: ['*.config.{mjs,ts}', '**/*.test.ts', 'prisma/**'],
     rules: {
-      // Config and test files run at build/test time, so devDependencies are fine.
       'import-x/no-extraneous-dependencies': ['error', { devDependencies: true }],
     },
   },
@@ -29,25 +28,21 @@ const eslintConfig = [
     name: 'project/tests',
     files: ['**/*.test.ts'],
     rules: {
-      // node --test runs TS directly and needs the real file extension in imports.
       'import-x/extensions': ['error', 'ignorePackages', { ts: 'always' }],
     },
   },
   {
     name: 'project/typescript-components',
     rules: {
-      // Optional props use default parameter values; defaultProps is legacy for function components.
       'react/require-default-props': ['error', { functions: 'defaultArguments' }],
     },
   },
   {
     name: 'project/placeholder-links',
     rules: {
-      // The design's nav/footer links have no real pages yet; keep them as "#" placeholders.
       'jsx-a11y/anchor-is-valid': ['error', { aspects: ['noHref', 'preferButton'] }],
     },
   },
-  // Formatting belongs to Prettier; turn off every rule that would fight it.
   prettier,
 ];
 
