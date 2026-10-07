@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-blue-500: hsl(220 98% 61%);
+  --color-check-from: hsl(192 100% 67%);
+  --color-check-to: hsl(280 87% 65%);
+
+  --color-gray-50: hsl(0 0% 98%);
+  --color-gray-300: hsl(233 11% 84%);
+  --color-gray-600: hsl(236 9% 61%);
+  --color-navy-850: hsl(235 19% 35%);
+
+  --color-navy-950: hsl(235 21% 11%);
+  --color-navy-900: hsl(235 24% 19%);
+  --color-purple-100: hsl(236 33% 92%);
+  --color-purple-300: hsl(234 39% 85%);
+  --color-purple-600: hsl(235 16% 43%);
+  --color-purple-700: hsl(233 14% 35%);
+  --color-purple-800: hsl(237 14% 26%);
+
+  --font-sans: var(--font-josefin-sans), sans-serif;
+
+  --shadow-card: 0 35px 50px -15px hsl(234 22% 80% / 0.5);
+  --shadow-card-dark: 0 35px 50px -15px rgb(0 0 0 / 0.5);
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500;
+}
+
+@utility card {
+  @apply rounded-md bg-white shadow-card dark:bg-navy-900 dark:shadow-card-dark;
+}
+
+@utility muted-link {
+  @apply cursor-pointer text-gray-600 focus-ring transition-colors hover:text-navy-850 dark:text-purple-600 dark:hover:text-purple-100;
+}
+
+body {
+  @apply min-h-dvh bg-gray-50 font-sans text-navy-850 transition-colors dark:bg-navy-950 dark:text-purple-300;
+}
+
+.hero {
+  background: url('/images/bg-mobile-light.jpg') center / cover no-repeat;
+}
+.dark .hero {
+  background-image: url('/images/bg-mobile-dark.jpg');
+}
+@media (width >= 48rem) {
+  .hero {
+    background-image: url('/images/bg-desktop-light.jpg');
+  }
+  .dark .hero {
+    background-image: url('/images/bg-desktop-dark.jpg');
+  }
+}
+
+/* Only rows inserted after hydration animate; TodoItem chains --enter-transition after dnd-kit's. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hydrated] > li {
+    --enter-transition: opacity 300ms ease-out, translate 300ms ease-out;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -0.75rem;
+    }
+  }
+}
