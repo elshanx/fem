@@ -17,7 +17,14 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useOptimistic, useRef, useState, useTransition, type MouseEvent } from 'react';
+import {
+  useOptimistic,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  useTransition,
+  type MouseEvent,
+} from 'react';
 import { addTodo, clearCompleted, deleteTodo, reorderTodos, toggleTodo } from '@/app/actions';
 import FilterTabs from '@/components/FilterTabs';
 import TodoItem from '@/components/TodoItem';
@@ -29,9 +36,6 @@ type Action =
   | { type: 'delete'; id: string }
   | { type: 'clear' }
   | { type: 'reorder'; ids: string[] };
-
-// Optimistic todos get this id prefix until the server's list replaces them.
-const PENDING = 'pending-';
 
 function reducer(todos: Todo[], action: Action): Todo[] {
   switch (action.type) {
@@ -54,6 +58,8 @@ function reducer(todos: Todo[], action: Action): Todo[] {
   }
 }
 
+const subscribe = () => () => {};
+
 export default function TodoApp({ todos }: { todos: Todo[] }) {
   const [list, dispatch] = useOptimistic(todos, reducer);
   const [filter, setFilter] = useState<Filter>('all');
@@ -65,6 +71,14 @@ export default function TodoApp({ todos }: { todos: Todo[] }) {
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
+  // False during SSR and hydration, so rows already on the page don't play the enter animation.
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+  // Rows the server hasn't confirmed yet (optimistic adds) can't be toggled or deleted.
+  const saved = new Set(todos.map((todo) => todo.id));
   const visible = filterTodos(list, filter);
   const left = itemsLeft(list);
   // Reordering a filtered view would shuffle hidden items, so only "All" is sortable.
@@ -79,11 +93,9 @@ export default function TodoApp({ todos }: { todos: Todo[] }) {
   const add = async (formData: FormData) => {
     const title = titleSchema.safeParse(formData.get('title'));
     if (!title.success) return;
-    dispatch({
-      type: 'add',
-      todo: { id: `${PENDING}${crypto.randomUUID()}`, title: title.data, completed: false },
-    });
-    await addTodo(formData);
+    const id = crypto.randomUUID();
+    dispatch({ type: 'add', todo: { id, title: title.data, completed: false } });
+    await addTodo(id, title.data);
   };
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
@@ -139,13 +151,13 @@ export default function TodoApp({ todos }: { todos: Todo[] }) {
           }}
         >
           <SortableContext items={visible} strategy={verticalListSortingStrategy}>
-            <ul onClickCapture={swallowDragClick}>
+            <ul data-hydrated={hydrated || undefined} onClickCapture={swallowDragClick}>
               {visible.map((todo) => (
                 <TodoItem
                   key={todo.id}
                   todo={todo}
                   sortable={sortable}
-                  pending={todo.id.startsWith(PENDING)}
+                  pending={!saved.has(todo.id)}
                   onToggle={() =>
                     run({ type: 'toggle', id: todo.id, completed: !todo.completed }, () =>
                       toggleTodo(todo.id, !todo.completed)

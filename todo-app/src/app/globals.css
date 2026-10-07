@@ -60,3 +60,16 @@ body {
     background-image: url('/images/bg-desktop-dark.jpg');
   }
 }
+
+/* New rows slide in (TodoItem applies --enter-transition next to dnd-kit's). Gated on [data-hydrated] so server-rendered rows don't animate on load;
+   @starting-style only fires for elements inserted after that, not for existing ones. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hydrated] > li {
+    --enter-transition: opacity 300ms ease-out, translate 300ms ease-out;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -0.75rem;
+    }
+  }
+}

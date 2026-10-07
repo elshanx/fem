@@ -6,17 +6,20 @@ import prisma from '@/lib/db';
 import { ensureOwnerId, getOwnerId } from '@/lib/owner';
 import { idSchema, isPermutation, titleSchema } from '@/lib/todos';
 
-export async function addTodo(formData: FormData) {
-  const title = titleSchema.safeParse(formData.get('title'));
-  if (!title.success) return;
+// The client picks the id so its optimistic row keeps the same React key once saved.
+export async function addTodo(id: string, rawTitle: string) {
+  const title = titleSchema.safeParse(rawTitle);
+  if (!title.success || !idSchema.safeParse(id).success) return;
   const ownerId = await ensureOwnerId();
   const last = await prisma.todo.findFirst({
     where: { ownerId },
     orderBy: { position: 'desc' },
     select: { position: true },
   });
-  await prisma.todo.create({
-    data: { ownerId, title: title.data, position: (last?.position ?? -1) + 1 },
+  // skipDuplicates makes a replayed submit a no-op instead of a unique-key error.
+  await prisma.todo.createMany({
+    data: { id, ownerId, title: title.data, position: (last?.position ?? -1) + 1 },
+    skipDuplicates: true,
   });
   revalidatePath('/');
 }

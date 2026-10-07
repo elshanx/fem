@@ -33,7 +33,11 @@ export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <li
       ref={setNodeRef}
-      style={{ transform: CSS.Translate.toString(transform), transition }}
+      style={{
+        transform: CSS.Translate.toString(transform),
+        // dnd-kit's inline transition would override the enter animation from globals.css; chain both.
+        transition: [transition, 'var(--enter-transition, opacity 0s)'].filter(Boolean).join(', '),
+      }}
       {...attributes}
       {...listeners}
       onKeyDown={onKeyDown}
