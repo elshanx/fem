@@ -1,11 +1,10 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useSyncExternalStore, type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { Moon, Sun } from '@/common/icons';
-
-const subscribe = () => () => {};
+import useHydrated from '@/lib/use-hydrated';
 
 const REVEAL_MS = 450;
 
@@ -21,11 +20,7 @@ function applyThemeClass(theme: Theme) {
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const mounted = useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  );
+  const mounted = useHydrated();
   const isDark = mounted && resolvedTheme === 'dark';
 
   const toggle = async (event: MouseEvent<HTMLButtonElement>) => {

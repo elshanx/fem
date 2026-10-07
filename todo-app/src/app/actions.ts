@@ -6,35 +6,37 @@ import prisma from '@/lib/db';
 import { ensureOwnerId, getOwnerId } from '@/lib/owner';
 import { idSchema, isPermutation, titleSchema } from '@/lib/todos';
 
-// The client picks the id so its optimistic row keeps the same React key once saved.
+async function ownedTodo(id: string) {
+  const ownerId = await getOwnerId();
+  return ownerId && idSchema.safeParse(id).success ? { id, ownerId } : null;
+}
+
 export async function addTodo(id: string, rawTitle: string) {
   const title = titleSchema.safeParse(rawTitle);
   if (!title.success || !idSchema.safeParse(id).success) return;
   const ownerId = await ensureOwnerId();
-  const last = await prisma.todo.findFirst({
+  const { _max: max } = await prisma.todo.aggregate({
     where: { ownerId },
-    orderBy: { position: 'desc' },
-    select: { position: true },
+    _max: { position: true },
   });
-  // skipDuplicates makes a replayed submit a no-op instead of a unique-key error.
   await prisma.todo.createMany({
-    data: { id, ownerId, title: title.data, position: (last?.position ?? -1) + 1 },
+    data: { id, ownerId, title: title.data, position: (max.position ?? -1) + 1 },
     skipDuplicates: true,
   });
   revalidatePath('/');
 }
 
 export async function toggleTodo(id: string, completed: boolean) {
-  const ownerId = await getOwnerId();
-  if (!ownerId || !idSchema.safeParse(id).success || typeof completed !== 'boolean') return;
-  await prisma.todo.updateMany({ where: { id, ownerId }, data: { completed } });
+  const where = await ownedTodo(id);
+  if (!where || typeof completed !== 'boolean') return;
+  await prisma.todo.updateMany({ where, data: { completed } });
   revalidatePath('/');
 }
 
 export async function deleteTodo(id: string) {
-  const ownerId = await getOwnerId();
-  if (!ownerId || !idSchema.safeParse(id).success) return;
-  await prisma.todo.deleteMany({ where: { id, ownerId } });
+  const where = await ownedTodo(id);
+  if (!where) return;
+  await prisma.todo.deleteMany({ where });
   revalidatePath('/');
 }
 
@@ -50,7 +52,6 @@ export async function reorderTodos(ids: string[]) {
   const parsed = z.array(idSchema).max(1000).safeParse(ids);
   if (!ownerId || !parsed.success) return;
   const current = await prisma.todo.findMany({ where: { ownerId }, select: { id: true } });
-  // A stale order (an add or delete landed meanwhile) is dropped; revalidation restores the truth.
   if (
     !isPermutation(
       parsed.data,

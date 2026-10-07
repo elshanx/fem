@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 import env from '@/lib/env';
 import { idSchema } from '@/lib/todos';
 
-// No accounts: each browser gets an anonymous id cookie that owns its todos.
 const COOKIE = 'todo_owner';
 const ONE_YEAR = 60 * 60 * 24 * 365;
 

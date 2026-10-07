@@ -14,8 +14,6 @@ interface Props {
   onDelete: () => void;
 }
 
-const gradient = 'bg-linear-to-br from-check-from to-check-to';
-
 export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: todo.id,
@@ -23,19 +21,18 @@ export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }
     attributes: { role: 'listitem' },
   });
 
-  // Space/Enter on the checkbox or delete button must not start a keyboard drag.
+  // Keys pressed on the checkbox or delete button shouldn't start a keyboard drag.
   const onKeyDown = (event: KeyboardEvent<HTMLLIElement>) => {
     if (event.target === event.currentTarget) listeners?.onKeyDown?.(event);
   };
 
   return (
-    // The row itself is the drag handle (dnd-kit makes it focusable for keyboard sorting).
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <li
       ref={setNodeRef}
       style={{
         transform: CSS.Translate.toString(transform),
-        // dnd-kit's inline transition would override the enter animation from globals.css; chain both.
+        // An inline transition from dnd-kit would otherwise cancel the enter animation.
         transition: [transition, 'var(--enter-transition, opacity 0s)'].filter(Boolean).join(', '),
       }}
       {...attributes}
@@ -63,7 +60,9 @@ export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }
         >
           <span
             className={`grid size-full place-items-center rounded-full ${
-              todo.completed ? gradient : 'bg-white dark:bg-navy-900'
+              todo.completed
+                ? 'bg-linear-to-br from-check-from to-check-to'
+                : 'bg-white dark:bg-navy-900'
             }`}
           >
             {todo.completed && <Check className='w-2 md:w-2.75' />}

@@ -20,7 +20,7 @@ const eslintConfig = [
   ...configs.next.typescript,
   {
     name: 'project/tooling-files',
-    files: ['*.config.{mjs,ts}', '**/*.test.ts', 'prisma/**', 'e2e/**'],
+    files: ['*.config.{mjs,ts}', '**/*.test.ts', 'prisma/**'],
     rules: {
       'import-x/no-extraneous-dependencies': ['error', { devDependencies: true }],
     },
@@ -47,6 +47,5 @@ const eslintConfig = [
   prettier,
 ];
 
-// Airbnb's plugins (react, jsx-a11y, import) still call context APIs ESLint 10 removed;
-// fixupConfigRules shims them back in.
+// Airbnb's plugins still call context APIs that ESLint 10 removed.
 export default fixupConfigRules(eslintConfig);

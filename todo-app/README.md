@@ -22,8 +22,8 @@ Next.js 16 (App Router, server components, server actions), TypeScript, Tailwind
 - There are no accounts. Each browser gets an anonymous id in an httpOnly cookie (`src/lib/owner.ts`) the first time it adds a todo, and every query is scoped to that id.
 - `prisma/schema.prisma` has a single `Todo` model with an integer `position` for ordering.
 - `src/app/actions.ts` holds the server actions. Each one validates its input with zod and only touches the caller's own rows. A reorder is accepted only if it's an exact permutation of the caller's todos.
-- `src/components/TodoApp.tsx` keeps the list in `useOptimistic`, so the UI updates before the server responds and settles on the server's list once the action finishes.
-- `src/lib/todos.ts` holds the pure helpers (filtering, counting, validation), which are unit-tested in `todos.test.ts`.
+- `src/components/TodoApp.tsx` keeps the list in `useOptimistic`, so the UI updates before the server responds and settles on the server's list once the action finishes. `TodoList.tsx` handles drag and drop.
+- `src/lib/todos.ts` holds the pure helpers (filtering, counting, validation and the optimistic reducer), which are unit-tested in `todos.test.ts`.
 
 ## Running
 
