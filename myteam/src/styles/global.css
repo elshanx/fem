@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Livvic', sans-serif;
+
+  --color-teal-950: #002529;
+  --color-teal-900: #012f34;
+  --color-teal-850: #004047;
+  --color-teal-800: #014e56;
+  --color-teal-700: #2c6269;
+  --color-teal-600: #79c8c7;
+  --color-rose: #f67e7e;
+  --color-cyan: #c9ffff;
+}
+
+@utility wrap {
+  width: min(100% - 48px, 1110px);
+  margin-inline: auto;
+  @media (width >= 48rem) {
+    width: min(100% - 78px, 1110px);
+  }
+}
+
+@utility heading-xl {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 700;
+  @media (width >= 48rem) {
+    font-size: 4rem;
+    line-height: 0.875;
+  }
+  @media (width >= 64rem) {
+    font-size: 6.25rem;
+    line-height: 1;
+  }
+}
+
+@utility heading-l {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 700;
+  @media (width >= 48rem) {
+    font-size: 4rem;
+    line-height: 0.875;
+  }
+}
+
+@utility heading-m {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+  @media (width >= 48rem) {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@utility heading-s {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+@utility text-label {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+@utility text-small {
+  font-size: 0.9375rem;
+  line-height: 1.67;
+  font-weight: 600;
+}
+
+@layer base {
+  body {
+    @apply bg-teal-950 font-sans text-[1.125rem] leading-[1.55] font-semibold text-white;
+  }
+}

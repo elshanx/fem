@@ -23,6 +23,7 @@ My solutions to [Frontend Mentor](https://www.frontendmentor.io) challenges, all
 | [Invoice app](./invoice-app)                                        | Next.js, TypeScript, Tailwind CSS, Postgres + Prisma          | <img src="./invoice-app/preview.jpg" width="240" alt="Invoice app preview">                                            |
 | [Arch Studio multi-page website](./arch-studio)                     | Astro, Tailwind CSS, TypeScript, Leaflet                      | <img src="./arch-studio/preview.jpg" width="240" alt="Arch Studio multi-page website preview">                         |
 | [Todo app](./todo-app)                                              | Next.js, TypeScript, Tailwind CSS, Postgres + Prisma, dnd-kit | <img src="./todo-app/preview.jpg" width="240" alt="Todo app preview">                                                  |
+| [myteam multi-page website](./myteam)                               | Astro, Tailwind CSS, TypeScript                               | <img src="./myteam/preview.jpg" width="240" alt="myteam multi-page website preview">                                   |
 
 ## Running a project
 
@@ -38,6 +39,7 @@ npm install
 - **Devjobs, URL shortening API, invoice app:** run `npm run dev`. Devjobs and the invoice app need Postgres; see their READMEs.
 - **Todo app:** uses pnpm (`pnpm install`, `pnpm dev`) and needs Postgres; see its README.
 - **Arch Studio:** run `npm run dev` (Astro dev server).
+- **myteam:** uses pnpm (`pnpm install`, `pnpm dev`; Astro dev server).
 - **QR code, Article preview, Base Apparel:** plain HTML/CSS/JS, so just open `index.html`.
 
 ## Author

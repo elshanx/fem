@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cta from '../components/Cta.astro';
+
+const features = [
+  {
+    icon: 'icon-person.svg',
+    title: 'Experienced Individuals',
+    text: 'Our network is made up of highly experienced professionals who are passionate about what they do.',
+  },
+  {
+    icon: 'icon-cog.svg',
+    title: 'Easy to Implement',
+    text: 'Our processes have been refined over years of implementation meaning our teams always deliver.',
+  },
+  {
+    icon: 'icon-chart.svg',
+    title: 'Enhanced Productivity',
+    text: 'Our customized platform with in-built analytics helps you manage your distributed teams.',
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      'The team perfectly fit the specialized skill set required. They focused on the most essential features helping us launch the platform eight months faster than planned.',
+    name: 'Kady Baker',
+    role: 'Product Manager at Bookmark',
+    avatar: 'avatar-kady.jpg',
+  },
+  {
+    quote:
+      'We needed to automate our entire onboarding process. The team came in and built out the whole journey. Since going live, user retention has gone through the roof!',
+    name: 'Aiysha Reese',
+    role: 'Founder of Manage',
+    avatar: 'avatar-aiysha.jpg',
+  },
+  {
+    quote:
+      'Amazing. Our team helped us build an app that delivered a new experience for hiring a physio. The launch was an instant success with 100k downloads in the first month.',
+    name: 'Arthur Clarke',
+    role: 'Co-founder of MyPhysio',
+    avatar: 'avatar-arthur.jpg',
+  },
+];
+---
+
+<Layout title="Home">
+  <section class="relative bg-teal-800 pt-36 pb-44 md:pt-44 md:pb-40 lg:pt-48 lg:pb-32">
+    <img
+      src="/images/bg-pattern-home-1.svg"
+      alt=""
+      class="absolute top-55 -left-25 hidden lg:block"
+    />
+    <div class="wrap relative text-center md:text-left lg:grid lg:grid-cols-[1fr_445px] lg:gap-8">
+      <h1 class="heading-xl">
+        Find the
+        <br />
+        best <span class="text-rose">talent</span>
+      </h1>
+      <div class="mt-4 md:mt-10 md:ml-auto md:w-[445px] lg:mt-0 lg:ml-0 lg:w-auto lg:pt-6">
+        <span class="mx-auto block h-1 w-12 bg-teal-600 md:mx-0"></span>
+        <p class="mt-6 md:mt-12 lg:mt-14">
+          Finding the right people and building high performing teams can be hard. Most companies
+          aren’t tapping into the abundance of global talent. We’re about to change that.
+        </p>
+      </div>
+    </div>
+    <img
+      src="/images/bg-pattern-home-2.svg"
+      alt=""
+      class="absolute bottom-0 left-1/2 h-auto w-50 -translate-x-[60%] md:w-auto md:translate-x-[10%] lg:left-auto lg:right-[17%] lg:translate-x-0"
+    />
+  </section>
+
+  <section class="relative bg-teal-900 py-36 md:py-24 lg:py-35">
+    <img
+      src="/images/bg-pattern-home-3.svg"
+      alt=""
+      class="absolute -right-25 bottom-0 hidden h-auto md:block md:-bottom-25 lg:bottom-auto lg:top-[60%]"
+    />
+    <div class="wrap relative lg:grid lg:grid-cols-[1fr_540px] lg:gap-8">
+      <div>
+        <span class="block h-1 w-12 bg-rose"></span>
+        <h2 class="heading-m mt-12 max-w-[573px] lg:mt-14 lg:max-w-[445px]">
+          Build & manage distributed teams like no one else.
+        </h2>
+      </div>
+      <ul class="mt-14 grid gap-8 md:mt-16 lg:mt-0">
+        {features.map(({ icon, title, text }) => (
+          <li class="flex gap-6">
+            <img src={`/images/${icon}`} alt="" class="size-18 shrink-0" />
+            <div>
+              <h3 class="text-label text-rose">{title}</h3>
+              <p class="text-small mt-2 md:mt-4">{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="relative bg-teal-850 py-36 md:py-35 lg:py-35">
+    <img
+      src="/images/bg-pattern-home-4-about-3.svg"
+      alt=""
+      class="absolute top-0 -left-[47px] h-auto"
+    />
+    <img
+      src="/images/bg-pattern-home-5.svg"
+      alt=""
+      class="absolute right-0 bottom-0 hidden h-auto rotate-180 md:block"
+    />
+    <div class="wrap relative">
+      <h2 class="heading-m mx-auto max-w-[920px] text-center">
+        Delivering real results for top companies. Some of our{' '}
+        <span class="text-teal-600">success stories.</span>
+      </h2>
+      <ul class="mt-20 grid gap-12 md:mx-auto md:max-w-[540px] lg:max-w-none lg:grid-cols-3 lg:gap-8">
+        {testimonials.map(({ quote, name, role, avatar }) => (
+          <li class="relative pt-9 text-center">
+            <img
+              src="/images/icon-quotes.svg"
+              alt=""
+              class="absolute top-0 left-1/2 -translate-x-1/2"
+            />
+            <figure class="relative">
+              <blockquote class="text-small">“{quote}”</blockquote>
+              <figcaption class="mt-4">
+                <p class="text-label text-teal-600">{name}</p>
+                <p class="text-small font-medium italic">{role}</p>
+                <img
+                  src={`/images/${avatar}`}
+                  alt=""
+                  class="mx-auto mt-4 size-16 rounded-full border-2 border-teal-600"
+                />
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Layout>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  href?: string;
+  variant?: keyof typeof variants;
+  class?: string;
+}
+
+const { href, variant = 'light', class: className } = Astro.props;
+const Tag = href ? 'a' : 'button';
+const variants = {
+  light: 'border-white text-white hover:bg-white hover:text-teal-800',
+  dark: 'border-teal-900 text-teal-900 hover:bg-teal-900 hover:text-white',
+  solid:
+    'border-white bg-white text-teal-800 hover:border-teal-600 hover:bg-teal-600 hover:text-teal-900',
+};
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'inline-flex h-12 whitespace-nowrap items-center justify-center rounded-full border-2 px-8 text-[1.125rem] font-semibold lowercase transition-colors',
+    variants[variant],
+    className,
+  ]}
+  {...(href ? {} : { type: 'submit' })}
+>
+  <slot />
+</Tag>
