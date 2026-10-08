@@ -45,9 +45,10 @@ body {
 }
 
 .hero {
-  background: url('/images/bg-mobile-light.jpg') center / cover no-repeat;
+  background: hsl(235 43% 42%) url('/images/bg-mobile-light.jpg') center / cover no-repeat;
 }
 .dark .hero {
+  background-color: hsl(235 32% 16%);
   background-image: url('/images/bg-mobile-dark.jpg');
 }
 @media (width >= 48rem) {

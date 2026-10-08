@@ -4,7 +4,6 @@ import { useTheme } from 'next-themes';
 import type { MouseEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { Moon, Sun } from '@/common/icons';
-import useHydrated from '@/lib/use-hydrated';
 
 const REVEAL_MS = 450;
 
@@ -19,12 +18,10 @@ function applyThemeClass(theme: Theme) {
 }
 
 export default function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const mounted = useHydrated();
-  const isDark = mounted && resolvedTheme === 'dark';
+  const { setTheme } = useTheme();
 
   const toggle = async (event: MouseEvent<HTMLButtonElement>) => {
-    const next: Theme = isDark ? 'light' : 'dark';
+    const next: Theme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!document.startViewTransition || reduceMotion) {
@@ -54,12 +51,13 @@ export default function ThemeToggle() {
   return (
     <button
       type='button'
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      disabled={!mounted}
       onClick={toggle}
       className='-mr-2 grid size-10 cursor-pointer place-items-center rounded-full text-white focus-ring transition-opacity hover:opacity-75 [&_svg]:size-5 md:[&_svg]:size-6.5'
     >
-      {isDark ? <Sun /> : <Moon />}
+      <Moon className='dark:hidden' />
+      <Sun className='hidden dark:block' />
+      <span className='sr-only dark:hidden'>Switch to dark mode</span>
+      <span className='sr-only hidden dark:inline'>Switch to light mode</span>
     </button>
   );
 }

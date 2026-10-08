@@ -18,7 +18,11 @@ export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: todo.id,
     disabled: !sortable,
-    attributes: { role: 'listitem' },
+    attributes: {
+      role: 'listitem',
+      tabIndex: sortable ? 0 : -1,
+      roleDescription: sortable ? 'sortable' : '',
+    },
   });
 
   // Keys pressed on the checkbox or delete button shouldn't start a keyboard drag.
@@ -36,6 +40,7 @@ export default function TodoItem({ todo, sortable, pending, onToggle, onDelete }
         transition: [transition, 'var(--enter-transition, opacity 0s)'].filter(Boolean).join(', '),
       }}
       {...attributes}
+      aria-describedby={sortable ? attributes['aria-describedby'] : undefined}
       {...listeners}
       onKeyDown={onKeyDown}
       className={`group relative flex min-h-13 items-center gap-3 border-b border-purple-100 bg-white px-5 focus-ring first:rounded-t-md md:min-h-16 md:gap-6 md:px-6 dark:border-purple-800 dark:bg-navy-900 ${
