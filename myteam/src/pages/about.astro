@@ -60,7 +60,7 @@ const clients = [
     <img
       src="/images/bg-pattern-about-1-mobile-nav-1.svg"
       alt=""
-      class="absolute -right-25 bottom-0 hidden h-auto lg:block lg:top-[60%] lg:bottom-auto"
+      class="absolute -right-25 bottom-0 hidden h-auto lg:block"
     />
     <div class="wrap relative text-center md:text-left lg:grid lg:grid-cols-[350px_1fr] lg:gap-8">
       <h1 class="heading-l">About</h1>
@@ -79,15 +79,15 @@ const clients = [
     <img
       src="/images/bg-pattern-about-2-contact-1.svg"
       alt=""
-      class="absolute top-0 -left-25 hidden h-auto -translate-y-1/2 md:block"
+      class="absolute top-0 -left-25 hidden h-auto md:block"
     />
     <img
       src="/images/bg-pattern-home-4-about-3.svg"
       alt=""
-      class="absolute right-0 bottom-0 z-10 hidden h-auto translate-y-1/2 md:block"
+      class="absolute right-0 bottom-0 hidden h-auto md:block"
     />
     <div class="wrap relative">
-      <h2 class="heading-s text-center">Meet the directors</h2>
+      <h2 class="heading-m text-center">Meet the directors</h2>
       <ul class="mt-12 grid gap-y-14 md:grid-cols-2 md:gap-x-3 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-19">
         {directors.map(({ name, role, avatar, quote }) => (
           <li class="group relative" data-card>
@@ -95,7 +95,7 @@ const clients = [
               <img
                 src={`/images/${avatar}`}
                 alt=""
-                class="size-16 rounded-full border-2 border-teal-600"
+                class="size-24 rounded-full border-2 border-teal-600"
               />
               <h3 class="text-label mt-4 text-teal-600">{name}</h3>
               <p class="text-small font-medium italic">{role}</p>
@@ -139,14 +139,14 @@ const clients = [
     </div>
   </section>
 
-  <section class="relative bg-teal-900 py-35 md:py-25">
+  <section class="relative bg-teal-900 py-35 md:py-25 lg:py-35">
     <img
       src="/images/bg-pattern-about-4.svg"
       alt=""
-      class="absolute -right-25 bottom-0 hidden h-auto lg:block"
+      class="absolute top-0 left-0 hidden h-auto lg:block"
     />
     <div class="wrap relative">
-      <h2 class="heading-s text-center">Some of our clients</h2>
+      <h2 class="heading-m text-center">Some of our clients</h2>
       <ul class="mt-12 flex flex-col items-center gap-14 md:flex-row md:justify-between md:gap-4 lg:mt-16">
         {clients.map(({ src, name, width }) => (
           <li>
@@ -154,7 +154,7 @@ const clients = [
               src={`/images/${src}`}
               alt={name}
               width={width}
-              class="h-auto max-w-full md:w-[calc(var(--w)*0.65)] lg:w-auto"
+              class="h-auto max-w-full md:w-[calc(var(--w)*0.65)] lg:w-(--w)"
               style={`--w:${width}px`}
             />
           </li>
