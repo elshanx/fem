@@ -1,0 +1,65 @@
+---
+import Logo from '../icons/logo.svg';
+import Facebook from '../icons/facebook.svg';
+import Pinterest from '../icons/pinterest.svg';
+import Twitter from '../icons/twitter.svg';
+import NavLinks from './NavLinks.astro';
+
+const socials = [
+  { label: 'Facebook', Icon: Facebook },
+  { label: 'Pinterest', Icon: Pinterest },
+  { label: 'Twitter', Icon: Twitter },
+];
+---
+
+<footer class="bg-teal-950 py-16 text-center md:py-12 md:text-left">
+  <div class="wrap grid justify-items-center gap-6 md:grid-cols-[auto_1fr_auto] md:items-start md:justify-items-start md:gap-x-16 md:gap-y-0 lg:gap-x-24">
+    <div class="grid justify-items-center gap-6 md:justify-items-start">
+      <a href="/" aria-label="myteam home">
+        <Logo class="h-6 w-auto md:h-8" />
+      </a>
+      <nav aria-label="Footer">
+        <ul class="flex gap-10">
+          <NavLinks />
+        </ul>
+      </nav>
+    </div>
+
+    <address class="text-small not-italic opacity-60">
+      987 Hillcrest Lane
+      <br />
+      Irvine, CA
+      <br />
+      California 92714
+      <br />
+      Call Us : 949-833-7432
+    </address>
+
+    <div class="mt-6 grid justify-items-center gap-4 md:col-span-full md:row-start-2 md:mt-0 md:justify-items-start lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:h-full lg:content-between lg:justify-items-end">
+      <ul class="flex gap-4">
+        {socials.map(({ label, Icon }) => (
+          <li>
+            <a href="#" aria-label={label} class="block transition-colors hover:text-rose">
+              <Icon aria-hidden="true" class="size-6" />
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="text-small opacity-60">Copyright 2020. All Rights Reserved</p>
+      <p class="text-small opacity-60">
+        Challenge by{' '}
+        <a
+          href="https://www.frontendmentor.io/challenges/myteam-multipage-website-mxlEauvW"
+          class="underline hover:text-rose"
+        >
+          Frontend Mentor
+        </a>
+        . Coded by{' '}
+        <a href="https://github.com/elshanx" class="underline hover:text-rose">
+          elshanx
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</footer>

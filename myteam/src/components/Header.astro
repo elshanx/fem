@@ -1,0 +1,72 @@
+---
+import Logo from '../icons/logo.svg';
+import Hamburger from '../icons/hamburger.svg';
+import Close from '../icons/close.svg';
+import NavLinks from './NavLinks.astro';
+import Button from './Button.astro';
+---
+
+<header class="group absolute inset-x-0 top-0 z-20" data-header>
+  <div class="wrap flex h-22 items-center md:h-30 lg:h-32">
+    <a href="/" aria-label="myteam home">
+      <Logo class="h-6 w-auto md:h-10" />
+    </a>
+
+    <nav aria-label="Main" class="ml-10 hidden md:block lg:ml-16">
+      <ul class="flex gap-10">
+        <NavLinks />
+      </ul>
+    </nav>
+
+    <div class="ml-auto hidden md:block">
+      <Button href="/contact">contact us</Button>
+    </div>
+
+    <button
+      type="button"
+      class="relative z-10 ml-auto md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open menu"
+      data-menu-toggle
+    >
+      <Hamburger class="group-data-open:hidden" aria-hidden="true" />
+      <Close class="hidden group-data-open:block" aria-hidden="true" />
+    </button>
+  </div>
+
+  <div class="fixed inset-0 hidden bg-black/50 group-data-open:block md:hidden!" data-overlay></div>
+
+  <nav
+    id="mobile-nav"
+    aria-label="Mobile"
+    class="fixed inset-y-0 right-0 hidden w-[67%] overflow-hidden bg-teal-700 px-12 pt-28 group-data-open:block md:hidden!"
+  >
+    <ul class="flex flex-col gap-6">
+      <NavLinks />
+    </ul>
+    <Button href="/contact" class="mt-6">
+      contact us
+    </Button>
+    <img
+      src="/images/bg-pattern-about-1-mobile-nav-1.svg"
+      alt=""
+      class="absolute -right-25 bottom-0"
+    />
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+
+  const setOpen = (open: boolean) => {
+    header.toggleAttribute('data-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+
+  toggle.addEventListener('click', () => setOpen(!header.hasAttribute('data-open')));
+  header.querySelector('[data-overlay]')!.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+</script>

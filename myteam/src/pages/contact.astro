@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const topics = [
+  { icon: 'icon-person.svg', text: 'The quality of our talent network' },
+  { icon: 'icon-cog.svg', text: 'Usage & implementation of our software' },
+  { icon: 'icon-chart.svg', text: 'How we help drive innovation' },
+];
+
+const fields: {
+  name: string;
+  label: string;
+  type?: 'text' | 'email';
+  autocomplete?: string;
+  required?: boolean;
+}[] = [
+  { name: 'name', label: 'Name', autocomplete: 'name', required: true },
+  { name: 'email', label: 'Email Address', type: 'email', autocomplete: 'email', required: true },
+  { name: 'company', label: 'Company Name', autocomplete: 'organization' },
+  { name: 'title', label: 'Title' },
+  { name: 'message', label: 'Message', required: true },
+];
+
+const inputClass =
+  'block w-full resize-none border-b border-white bg-transparent px-3.5 pb-4 font-semibold text-white outline-none transition-colors placeholder:text-white/60 not-aria-invalid:hover:border-teal-600 not-aria-invalid:focus:border-teal-600 aria-invalid:border-rose aria-invalid:placeholder:text-rose';
+---
+
+<Layout title="Contact">
+  <section class="relative bg-teal-800 pt-36 pb-22 md:pt-44 md:pb-25 lg:pt-48 lg:pb-35">
+    <img
+      src="/images/bg-pattern-about-2-contact-1.svg"
+      alt=""
+      class="absolute top-[42%] -left-25 hidden h-auto lg:block"
+    />
+    <img
+      src="/images/bg-pattern-contact-2.svg"
+      alt=""
+      class="absolute -right-25 bottom-0 h-auto w-25 md:w-auto"
+    />
+    <div class="wrap relative lg:grid lg:grid-cols-[1fr_445px] lg:gap-8">
+      <div class="text-center md:text-left">
+        <h1 class="heading-l">Contact</h1>
+        <h2 class="heading-s mt-4 text-rose md:mt-6">Ask us about</h2>
+        <ul class="mt-14 grid gap-8 text-left md:mt-12 md:gap-6">
+          {topics.map(({ icon, text }) => (
+            <li class="flex items-center gap-6">
+              <img src={`/images/${icon}`} alt="" class="size-18 shrink-0" />
+              <span class="text-label">{text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <form novalidate class="mt-14 grid gap-6 md:mt-12 lg:mt-0" data-contact-form>
+        {fields.map(({ name, label, type = 'text', autocomplete, required }) => (
+          <div>
+            <label for={name} class="sr-only">
+              {label}
+            </label>
+            {name === 'message' ? (
+              <textarea
+                id={name}
+                name={name}
+                rows="3"
+                placeholder={label}
+                required={required}
+                aria-describedby={`${name}-error`}
+                class={inputClass}
+              />
+            ) : (
+              <input
+                id={name}
+                name={name}
+                type={type}
+                placeholder={label}
+                autocomplete={autocomplete}
+                required={required}
+                aria-describedby={required ? `${name}-error` : undefined}
+                class={inputClass}
+              />
+            )}
+            {required && (
+              <p
+                id={`${name}-error`}
+                class="text-small mt-2 px-3.5 empty:hidden text-[0.625rem] leading-4 font-medium text-rose italic"
+              />
+            )}
+          </div>
+        ))}
+        <Button variant="solid" class="mt-2 w-fit">
+          submit
+        </Button>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]')!;
+  const fields = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]')];
+
+  const errorFor = (field: HTMLInputElement | HTMLTextAreaElement) => {
+    if (!field.value.trim()) return 'This field is required';
+    if (field.validity.typeMismatch) return 'Please use a valid email address';
+    return '';
+  };
+
+  const show = (field: HTMLInputElement | HTMLTextAreaElement, message: string) => {
+    document.getElementById(`${field.name}-error`)!.textContent = message;
+    if (message) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const errors = fields.map((field) => [field, errorFor(field)] as const);
+    errors.forEach(([field, message]) => show(field, message));
+    const firstInvalid = errors.find(([, message]) => message);
+    if (firstInvalid) return firstInvalid[0].focus();
+    form.reset();
+  });
+
+  fields.forEach((field) =>
+    field.addEventListener(
+      'input',
+      () => field.hasAttribute('aria-invalid') && show(field, errorFor(field))
+    )
+  );
+</script>
