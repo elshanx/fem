@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cta from '../components/Cta.astro';
+import Cross from '../icons/cross.svg';
+import Twitter from '../icons/twitter.svg';
+import Linkedin from '../icons/linkedin.svg';
+
+const directors = [
+  {
+    name: 'Nikita Marks',
+    role: 'Founder & CEO',
+    avatar: 'avatar-nikita.jpg',
+    quote: 'It always amazes me how much talent there is in every corner of the globe.',
+  },
+  {
+    name: 'Cristian Duncan',
+    role: 'Co-founder & COO',
+    avatar: 'avatar-christian.jpg',
+    quote: 'Distributed teams required unique processes. You need to approach work in a new way.',
+  },
+  {
+    name: 'Cruz Hamer',
+    role: 'Co-founder & CTO',
+    avatar: 'avatar-cruz.jpg',
+    quote: 'Technology is at the forefront of enabling distributed teams. That’s where we come in.',
+  },
+  {
+    name: 'Drake Heaton',
+    role: 'Business Development Lead',
+    avatar: 'avatar-drake.jpg',
+    quote: 'Hiring similar people from similar backgrounds is a surefire way to stunt innovation.',
+  },
+  {
+    name: 'Griffin Wise',
+    role: 'Lead Marketing',
+    avatar: 'avatar-griffin.jpg',
+    quote:
+      'Unique perspectives shape unique products, which is what you need to survive these days.',
+  },
+  {
+    name: 'Aden Allan',
+    role: 'Head of Talent',
+    avatar: 'avatar-aden.jpg',
+    quote:
+      'Empowered teams create truly amazing products. Set the north star and let them follow it.',
+  },
+];
+
+const clients = [
+  { src: 'logo-the-verge.png', name: 'The Verge', width: 165 },
+  { src: 'logo-jakarta-post.png', name: 'The Jakarta Post', width: 184 },
+  { src: 'logo-the-guardian.png', name: 'The Guardian', width: 180 },
+  { src: 'logo-tech-radar.png', name: 'TechRadar', width: 165 },
+  { src: 'logo-gadgets-now.png', name: 'Gadgets Now', width: 98 },
+];
+---
+
+<Layout title="About">
+  <section class="relative bg-teal-800 pt-36 pb-20 md:pt-44 md:pb-24 lg:pt-48 lg:pb-35">
+    <img
+      src="/images/bg-pattern-about-1-mobile-nav-1.svg"
+      alt=""
+      class="absolute -right-25 bottom-0 hidden h-auto lg:block"
+    />
+    <div class="wrap relative text-center md:text-left lg:grid lg:grid-cols-[350px_1fr] lg:gap-8">
+      <h1 class="heading-l">About</h1>
+      <div class="mt-4 md:mt-10 lg:mt-0">
+        <span class="mx-auto block h-1 w-12 bg-rose md:mx-0"></span>
+        <p class="mt-6 md:mt-12">
+          We help companies build dynamic teams made up of top global talent. Using our network of
+          passionate professionals we drive innovation and deliver incredible outcomes. Talented,
+          diverse teams shape the best products and experiences. We’ll bring those teams to you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative bg-teal-850 py-22 md:py-25 lg:py-35">
+    <img
+      src="/images/bg-pattern-about-2-contact-1.svg"
+      alt=""
+      class="absolute top-0 -left-25 hidden h-auto md:block"
+    />
+    <img
+      src="/images/bg-pattern-home-4-about-3.svg"
+      alt=""
+      class="absolute right-0 bottom-0 hidden h-auto md:block"
+    />
+    <div class="wrap relative">
+      <h2 class="heading-m text-center">Meet the directors</h2>
+      <ul class="mt-12 grid gap-y-14 md:grid-cols-2 md:gap-x-3 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-19">
+        {directors.map(({ name, role, avatar, quote }) => (
+          <li class="group relative" data-card>
+            <div class="flex h-[260px] flex-col items-center bg-teal-900 px-6 pt-8 text-center group-data-open:hidden lg:h-[257px]">
+              <img
+                src={`/images/${avatar}`}
+                alt=""
+                class="size-24 rounded-full border-2 border-teal-600"
+              />
+              <h3 class="text-label mt-4 text-teal-600">{name}</h3>
+              <p class="text-small font-medium italic">{role}</p>
+            </div>
+            <div class="hidden h-[260px] flex-col items-center justify-center bg-teal-950 px-6 pb-6 text-center group-data-open:flex lg:h-[257px] lg:px-10">
+              <h3 class="text-label text-teal-600">{name}</h3>
+              <p class="text-small mt-4">“{quote}”</p>
+              <ul class="mt-4 flex gap-4">
+                <li>
+                  <a
+                    href="#"
+                    aria-label={`${name} on Twitter`}
+                    class="block transition-colors hover:text-rose"
+                  >
+                    <Twitter aria-hidden="true" class="h-5 w-6" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    aria-label={`${name} on LinkedIn`}
+                    class="block transition-colors hover:text-rose"
+                  >
+                    <Linkedin aria-hidden="true" class="size-5" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              aria-expanded="false"
+              aria-label={`More about ${name}`}
+              class="absolute bottom-0 left-1/2 grid size-14 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full bg-rose text-teal-900 transition-colors hover:bg-teal-600 group-data-open:bg-cyan group-data-open:hover:bg-teal-600"
+              data-card-toggle
+            >
+              <Cross aria-hidden="true" class="transition-transform group-data-open:rotate-45" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="relative bg-teal-900 py-35 md:py-25 lg:py-35">
+    <img
+      src="/images/bg-pattern-about-4.svg"
+      alt=""
+      class="absolute top-0 left-0 hidden h-auto lg:block"
+    />
+    <div class="wrap relative">
+      <h2 class="heading-m text-center">Some of our clients</h2>
+      <ul class="mt-12 flex flex-col items-center gap-14 md:flex-row md:justify-between md:gap-4 lg:mt-16">
+        {clients.map(({ src, name, width }) => (
+          <li>
+            <img
+              src={`/images/${src}`}
+              alt={name}
+              width={width}
+              class="h-auto max-w-full md:w-[calc(var(--w)*0.65)] lg:w-(--w)"
+              style={`--w:${width}px`}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-card-toggle]').forEach((button) => {
+    const card = button.closest<HTMLElement>('[data-card]')!;
+    button.addEventListener('click', () => {
+      const open = !card.hasAttribute('data-open');
+      card.toggleAttribute('data-open', open);
+      button.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
