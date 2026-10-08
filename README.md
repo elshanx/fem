@@ -23,6 +23,7 @@ My solutions to [Frontend Mentor](https://www.frontendmentor.io) challenges, all
 | [Invoice app](./invoice-app)                                        | Next.js, TypeScript, Tailwind CSS, Postgres + Prisma          | <img src="./invoice-app/preview.jpg" width="240" alt="Invoice app preview">                                            |
 | [Arch Studio multi-page website](./arch-studio)                     | Astro, Tailwind CSS, TypeScript, Leaflet                      | <img src="./arch-studio/preview.jpg" width="240" alt="Arch Studio multi-page website preview">                         |
 | [Todo app](./todo-app)                                              | Next.js, TypeScript, Tailwind CSS, Postgres + Prisma, dnd-kit | <img src="./todo-app/preview.jpg" width="240" alt="Todo app preview">                                                  |
+| [Fylo dark theme landing page](./fylo)                              | HTML, Tailwind CSS, JS                                        | <img src="./fylo/preview.jpg" width="240" alt="Fylo dark theme landing page preview">                                  |
 
 ## Running a project
 
@@ -36,6 +37,7 @@ npm install
 - **Static Tailwind projects:** run `npm run dev:tw` to watch-build the CSS into `dist/`, then open `index.html`.
 - **IP address tracker:** run `npm run dev` (starts `netlify dev`).
 - **Devjobs, URL shortening API, invoice app:** run `npm run dev`. Devjobs and the invoice app need Postgres; see their READMEs.
+- **Fylo:** uses pnpm (`pnpm install`, `pnpm dev:tw`), then open `index.html`.
 - **Todo app:** uses pnpm (`pnpm install`, `pnpm dev`) and needs Postgres; see its README.
 - **Arch Studio:** run `npm run dev` (Astro dev server).
 - **QR code, Article preview, Base Apparel:** plain HTML/CSS/JS, so just open `index.html`.
