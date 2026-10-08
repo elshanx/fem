@@ -77,4 +77,8 @@
   body {
     @apply bg-teal-950 font-sans text-[1.125rem] leading-[1.55] font-semibold text-white;
   }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }
