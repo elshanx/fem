@@ -29,3 +29,4 @@
 # Astro build output
 **/.astro/
 arch-studio/dist/
+countries/dist/

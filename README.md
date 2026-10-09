@@ -25,6 +25,7 @@ My solutions to [Frontend Mentor](https://www.frontendmentor.io) challenges, all
 | [Todo app](./todo-app)                                              | Next.js, TypeScript, Tailwind CSS, Postgres + Prisma, dnd-kit | <img src="./todo-app/preview.jpg" width="240" alt="Todo app preview">                                                  |
 | [myteam multi-page website](./myteam)                               | Astro, Tailwind CSS, TypeScript                               | <img src="./myteam/preview.jpg" width="240" alt="myteam multi-page website preview">                                   |
 | [Fylo dark theme landing page](./fylo)                              | HTML, Tailwind CSS, JS                                        | <img src="./fylo/preview.jpg" width="240" alt="Fylo dark theme landing page preview">                                  |
+| [REST countries API](./countries)                                   | React, Vite, TypeScript, Tailwind CSS, React Router           | <img src="./countries/preview.jpg" width="240" alt="REST countries API preview">                                       |
 
 ## Running a project
 
@@ -42,6 +43,7 @@ npm install
 - **Todo app:** uses pnpm (`pnpm install`, `pnpm dev`) and needs Postgres; see its README.
 - **Arch Studio:** run `npm run dev` (Astro dev server).
 - **myteam:** uses pnpm (`pnpm install`, `pnpm dev`; Astro dev server).
+- **REST countries API:** uses pnpm (`pnpm install`, `pnpm dev`; Vite dev server). Run `pnpm data` after editing `data.json`.
 - **QR code, Article preview, Base Apparel:** plain HTML/CSS/JS, so just open `index.html`.
 
 ## Author
